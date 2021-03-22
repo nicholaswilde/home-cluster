@@ -19,20 +19,20 @@ subjects:
   namespace: system-upgrade
 ---
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: default-controller-env
-  namespace: system-upgrade
 data:
   SYSTEM_UPGRADE_CONTROLLER_DEBUG: "false"
   SYSTEM_UPGRADE_CONTROLLER_THREADS: "2"
   SYSTEM_UPGRADE_JOB_ACTIVE_DEADLINE_SECONDS: "900"
   SYSTEM_UPGRADE_JOB_BACKOFF_LIMIT: "99"
-  SYSTEM_UPGRADE_JOB_IMAGE_PULL_POLICY: "Always"
-  SYSTEM_UPGRADE_JOB_KUBECTL_IMAGE: "rancher/kubectl:v1.19.7"
+  SYSTEM_UPGRADE_JOB_IMAGE_PULL_POLICY: Always
+  SYSTEM_UPGRADE_JOB_KUBECTL_IMAGE: rancher/kubectl:v1.18.3
   SYSTEM_UPGRADE_JOB_PRIVILEGED: "true"
   SYSTEM_UPGRADE_JOB_TTL_SECONDS_AFTER_FINISH: "900"
-  SYSTEM_UPGRADE_PLAN_POLLING_INTERVAL: "15m"
+  SYSTEM_UPGRADE_PLAN_POLLING_INTERVAL: 15m
+kind: ConfigMap
+metadata:
+  name: default-controller-env
+  namespace: system-upgrade
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -53,25 +53,12 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: "node-role.kubernetes.io/master"
+              - key: node-role.kubernetes.io/master
                 operator: In
                 values:
                 - "true"
-      serviceAccountName: system-upgrade
-      tolerations:
-      - key: "CriticalAddonsOnly"
-        operator: "Exists"
-      - key: "node-role.kubernetes.io/master"
-        operator: "Exists"
-        effect: "NoSchedule"
       containers:
-      - name: system-upgrade-controller
-        image: rancher/system-upgrade-controller:v0.6.2
-        imagePullPolicy: IfNotPresent
-        envFrom:
-        - configMapRef:
-            name: default-controller-env
-        env:
+      - env:
         - name: SYSTEM_UPGRADE_CONTROLLER_NAME
           valueFrom:
             fieldRef:
@@ -80,15 +67,29 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        envFrom:
+        - configMapRef:
+            name: default-controller-env
+        image: rancher/system-upgrade-controller:v0.6.2
+        imagePullPolicy: IfNotPresent
+        name: system-upgrade-controller
         volumeMounts:
-        - name: etc-ssl
-          mountPath: /etc/ssl
-        - name: tmp
-          mountPath: /tmp
+        - mountPath: /etc/ssl
+          name: etc-ssl
+        - mountPath: /tmp
+          name: tmp
+      serviceAccountName: system-upgrade
+      tolerations:
+      - key: CriticalAddonsOnly
+        operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+        operator: Exists
       volumes:
-      - name: etc-ssl
-        hostPath:
+      - hostPath:
           path: /etc/ssl
           type: Directory
-      - name: tmp
-        emptyDir: {}
+        name: etc-ssl
+      - emptyDir: {}
+        name: tmp
+
