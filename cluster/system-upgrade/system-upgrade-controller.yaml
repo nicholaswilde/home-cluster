@@ -92,4 +92,3 @@ spec:
         name: etc-ssl
       - emptyDir: {}
         name: tmp
-
