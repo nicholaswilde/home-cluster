@@ -1,7 +1,8 @@
 # Operating System
 
-My cluster uses a modified version of [Raspberry Pi OS 64-bit][RPiOS] because
-of its native support for the CM3+ and it's lightness in weight.
+My cluster uses a modified version of [Raspberry Pi OS 64-bit][RPiOS]
+:strawberry: because of its native support for the CM3+ and it's
+lightness in weight.
 
 I decided to use the 64-bit version of the OS on my cluster because there are
 not that many charts that notively support the `armv7` architecture and I
@@ -10,7 +11,7 @@ the RPiOS is only released in a full desktop version and so I had to
 uninstall all of the X11 related components in order to free up some
 disk space on the CM3+.
 
-## Download
+## :floppy_disk:&nbsp;  Download
 
 Download the latest release of the [RPiOS 64bit][RPiOS].
 
@@ -19,14 +20,14 @@ need any modifications.
 
 Ubuntu `arm64` was a bit heavy for my CM3+.
 
-## Installation
+## :inbox_tray:&nbsp; Installation
 
 Installing the operating system on the CM3+ was done using the Turing Pi
 using [these instructions][these] from Turing Pi using [usbboot].
 
 Alternatively, a [compute module I/O board][1] can be used to flash the CM3+.
 
-## Modification
+## :wrench:&nbsp; Modification
 
 To rip out all of the desktop related apps, simply remove any modules that are
 related to X11.

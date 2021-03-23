@@ -2,7 +2,7 @@
 
 My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 
-## Background
+## :information_source:&nbsp; Background
 
 My cluster computing journey started last year when [Jeff Geerling] released
 his [Turing Pi Cluster YouTube series][1]. Now, I've always been into the
@@ -17,14 +17,14 @@ After getting the Turing Pi 1, I noticed that there weren't very many charts
 available period, let alone for `armv7` architectures. That led me into
 building my own [Docker images] and creating my [Helm Charts repo]. That
 then led me to collaborating with the awesome [k8s@home team]. Now, here I
-am, rebuilding my cluster and diving into the GitOps world.
+am, rebuilding my cluster and diving into the GitOps world :globe_with_meridians:.
 
 ## :handshake:&nbsp; Thanks
 
 A lot of inspiration for my cluster came from the people that have shared their
 clusters over at [awesome-home-kubernetes][awesome].
 
-## :closed_book:&nbsp; License
+## :scales:&nbsp; License
 
 [Apache 2.0 License][license]
 

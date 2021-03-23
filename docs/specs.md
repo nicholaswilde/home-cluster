@@ -16,7 +16,14 @@ Specifications for my home cluster.
 - [MITXPC MX500-USB3 Compact Mini-ITX Case][case] - 1X
 - [Noctua NF-A4x10 Fans][fans] - 2X
 
-## :wrench:&nbsp; Tools
+## :robot:&nbsp; Automation
+
+I try to use automaiton as much as possible when developing my projects
+so that I don't have to remember or perform the same tasks over and over.
+Some of those automations include using pre-commit, go-task, and GitHub
+Actions.
+
+## :hammer_and_wrench:&nbsp; Tools
 
 - [Ansible](https://www.ansible.com/)
 - [go-task](https://github.com/go-task/task)
