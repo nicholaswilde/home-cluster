@@ -20,7 +20,7 @@ spec:
       chart: nfs-subdir-external-provisioner
       sourceRef:
         kind: HelmRepository
-        name: nfs
+        name: managed-nfs-storage
   interval: 30s
   targetNamespace: managed-nfs-storage
   values:
