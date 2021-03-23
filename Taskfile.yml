@@ -2,6 +2,10 @@
 version: '3'
 
 tasks:
+  lint:
+    desc: Lint the files
+    cmds:
+      - yamllint .
   serve:
     desc: Serve the mkdocs site.
     cmds:

@@ -22,10 +22,8 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  favicon: assets/favicon.png
   icon:
     logo: logo
-  language: en
   palette:
     - scheme: default
       primary: indigo

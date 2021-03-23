@@ -1,0 +1,11 @@
+---
+extends: default
+
+ignore: |
+  **/gotk-components.yaml
+
+rules:
+  line-length:
+    level: warning
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no']
