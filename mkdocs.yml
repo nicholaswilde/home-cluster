@@ -6,7 +6,7 @@ site_url: https://nicholaswilde.github.io/home-cluster
 dev_addr: '0.0.0.0:8000'
 
 # Repository
-repo_name: nicholaswilde/notes
+repo_name: nicholaswilde/home-cluster
 repo_url: https://github.com/nicholaswilde/home-cluster
 edit_uri: ""
 
