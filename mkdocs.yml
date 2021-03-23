@@ -15,16 +15,7 @@ nav:
   - Home: index.md
 
 theme:
-  name: null
-  custom_dir: mkdocs/material
-
-  # 404 page
-  static_templates:
-    - 404.html
-
-  # Necessary for search to work properly
-  include_search_page: false
-  search_index_only: true
+  name: material
 
   # Default values, taken from mkdocs_theme.yml
   language: en

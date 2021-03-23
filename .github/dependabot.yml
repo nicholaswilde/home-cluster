@@ -2,17 +2,6 @@
 # Update dependencies
 version: 2
 updates:
-# Update the git submodules
-  - package-ecosystem: "gitsubmodule"
-    directory: "/mkdocs"
-    schedule:
-      interval: "daily"
-      time: "08:00"
-      timezone: "America/Los_Angeles"
-    labels:
-      - ":game_die: dependencies"
-      - "automerge"
-      - ":robot: bot"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
