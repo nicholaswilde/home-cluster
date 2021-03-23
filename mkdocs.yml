@@ -13,6 +13,8 @@ edit_uri: ""
 # Page tree
 nav:
   - Home: index.md
+  - Specs: specs.md
+  - Operating System: operating-system.md
 
 theme:
   name: material

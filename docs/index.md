@@ -2,24 +2,22 @@
 
 My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 
-## :computer:&nbsp; Software
+## Background
 
-- [Raspberry Pi OS 64-bit][RPiOS]
-- [k3s](https://k3s.io/)
-- [Flux](https://toolkit.fluxcd.io/)
+My cluster computing journey started last year when [Jeff Geerling] released
+his [Turing Pi Cluster YouTube series][1]. Now, I've always been into the
+Raspberry Pi ever since the release of version 1 and playing around with
+home networking projects such as running a [Pi Hole] server or a CUPS
+printer server, etc. The Turing Pi was a great "cheat" and compact
+way for my to branch out into cluster computing since I was tired
+of trying to remember which application I was running on which
+Raspberry Pi.
 
-## :gear:&nbsp; Hardware
-
-- [Turing Pi](https://turingpi.com/) - 1X
-- [Raspberry Pi CM3+][CM3+] - 1X master - 6X nodes
-- [Raspberry Pi 4 B][RPi4] - 1X serving 5GB via NFS
-- [MITXPC MX500-USB3 Compact Mini-ITX Case][case] - 1X
-- [Noctua NF-A4x10 Fans][fans] - 2X
-
-## :wrench:&nbsp; Tools
-
-- [Ansible](https://www.ansible.com/)
-- [go-task](https://github.com/go-task/task)
+After getting the Turing Pi 1, I noticed that there weren't very many charts
+available period, let alone for `armv7` architectures. That led me into
+building my own [Docker images] and creating my [Helm Charts repo]. That
+then led me to collaborating with the awesome [k8s@home team]. Now, here I
+am, rebuilding my cluster and diving into the GitOps world.
 
 ## :handshake:&nbsp; Thanks
 
@@ -37,8 +35,9 @@ This project was started in 2021 by [Nicholas Wilde].
 [awesome]: https://github.com/k8s-at-home/awesome-home-kubernetes
 [Nicholas Wilde]: https://github.com/nicholaswilde/
 [license]: https://github.com/nicholaswilde/home-cluster/blob/main/LICENSE
-[RPiOS]: https://downloads.raspberrypi.org/raspios_arm64/images/
-[CM3+]: https://www.raspberrypi.org/products/compute-module-3-plus/
-[RPi4]: https://www.raspberrypi.org/products/raspberry-pi-4-model-b/
-[case]: https://www.amazon.com/gp/product/B0728DX73X/
-[fans]: https://www.amazon.com/gp/product/B00NEMGCIA/
+[Jeff Geerling]: https://www.jeffgeerling.com/
+[1]: https://www.youtube.com/watch?v=kgVz4-SEhbE&list=PL2_OBreMn7Frk57NLmLheAaSSpJLLL90G
+[k8s@home team]: https://github.com/k8s-at-home
+[Helm Charts repo]: https://github.com/nicholaswilde/helm-charts
+[Docker images]: https://hub.docker.com/u/nicholaswilde
+[Pi Hole]: https://pi-hole.net/
