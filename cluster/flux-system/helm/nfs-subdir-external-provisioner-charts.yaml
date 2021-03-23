@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: nfs-subdir-external-provisioner-charts
+  name: managed-nfs-storage
   namespace: flux-system
 spec:
   interval: 1m0s
