@@ -17,7 +17,7 @@ metadata:
 spec:
   chart:
     spec:
-      chart: helm
+      chart: nfs-subdir-external-provisioner
       sourceRef:
         kind: HelmRepository
         name: nfs
