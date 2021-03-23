@@ -13,7 +13,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: managed-nfs-storage
-  namespace: flux-system
+  namespace: managed-nfs-storage
 spec:
   chart:
     spec:
