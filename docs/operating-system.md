@@ -45,7 +45,7 @@ because I wanted to get my cluster up and running. You may reverse
 engineer [this guide] to further clean up the OS. Suggestions are always
 welcome!
 
-[32bit]: ]https://www.raspberrypi.org/software/operating-systems/
+[32bit]: https://www.raspberrypi.org/software/operating-systems/
 [RPiOS]: https://downloads.raspberrypi.org/raspios_arm64/images/
 [these]: https://docs.turingpi.com/get-started/flashing-compute-modules
 [usbboot]: https://github.com/raspberrypi/usbboot
