@@ -1,0 +1,7 @@
+---
+nfs:
+  path: /home/pi/nas/nfs
+  server: 192.168.1.192
+storageClass:
+  defaultClass: false
+  name: managed-nfs-storage
