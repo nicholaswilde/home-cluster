@@ -11,9 +11,9 @@
 ## Tools
 
 
+## :handshake:&nbsp; Thanks
 
-## Thanks
-
+A lot of inspiration for my cluster came from the people that have shared their clusters over at [awesome-home-kubernetes](https://github.com/k8s-at-home/awesome-home-kubernetes)
 
 ## License
 
