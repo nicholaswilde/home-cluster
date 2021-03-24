@@ -76,7 +76,7 @@ ssh-import-id-gh <username>
 
 ## :whale2:&nbsp; Docker
 
-Last thing I need to do is install Docker on the master and each node.
+Last thing I need to do is [install Docker][docker] on the master and each node.
 
 !!! Note
     This setup is only for `arm64` architectures on a Debian/RPiOS OS.
@@ -112,3 +112,4 @@ docker run --rm hello-world
 [1]: https://www.amazon.com/Compute-Module-Board-PoE-Development/dp/B08BLC1DVD/
 [this guide]: https://www.raspberrypi.org/forums/viewtopic.php?t=133691
 [ssh]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
+[docker]: https://docs.docker.com/engine/install/debian/#install-using-the-repository
