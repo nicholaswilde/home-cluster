@@ -11,7 +11,7 @@ Documentation can be found [here](http://nicholaswilde.github.io/home-cluster).
 A lot of inspiration for my cluster came from the people that have shared their
 clusters over at [awesome-home-kubernetes].
 
-## :closed_book:&nbsp; License
+## :balance_scale:&nbsp; License
 
 [Apache 2.0 License](./LICENSE)
 
