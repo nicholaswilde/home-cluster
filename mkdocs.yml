@@ -15,6 +15,7 @@ nav:
   - Home: index.md
   - Specs: specs.md
   - Operating System: operating-system.md
+  - Restoration: restoration.md
 
 theme:
   name: material

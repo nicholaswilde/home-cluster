@@ -5,19 +5,20 @@ My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 ## :information_source:&nbsp; Background
 
 My cluster computing journey started last year when [Jeff Geerling] released
-his [Turing Pi Cluster YouTube series][1]. Now, I've always been into the
-Raspberry Pi ever since the release of version 1 and playing around with
-home networking projects such as running a [Pi Hole] server or a CUPS
-printer server, etc. The Turing Pi was a great "cheat" and compact
-way for my to branch out into cluster computing since I was tired
-of trying to remember which application I was running on which
-Raspberry Pi.
+his [Turing Pi Cluster YouTube series][1] :1234:&nbsp;. Now, I've always been
+into the Raspberry Pi ever since the release of version 1 and playing around
+with home networking projects such as running a [Pi Hole] :strawberry:&nbsp;
+server or a CUPS printer server, :printer:&nbsp; etc. The Turing Pi is a great
+"cheap" and compact way for my to branch out into cluster computing since I was
+tired of trying to remember which application I was running on which Raspberry
+Pi.
 
 After getting the Turing Pi 1, I noticed that there weren't very many charts
-available period, let alone for `armv7` architectures. That led me into
-building my own [Docker images] and creating my [Helm Charts repo]. That
-then led me to collaborating with the awesome [k8s@home team]. Now, here I
-am, rebuilding my cluster and diving into the GitOps world :globe_with_meridians:.
+available period, let alone for `armv7` architectures. :cry:&nbsp; That led
+me into building my own [Docker images] :whale2:&nbsp; and creating my
+[Helm Charts repo] :wheel_of_dharma:&nbsp; which then led me to collaborating
+with the awesome [k8s@home team]. :grin:&nbsp; Now, here I am, rebuilding my
+cluster and diving into the GitOps world :earth_americas:.
 
 ## :handshake:&nbsp; Thanks
 

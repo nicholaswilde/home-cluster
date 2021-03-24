@@ -34,7 +34,7 @@ related to X11.
 
 ```shell
 (
-  sudo apt --purge remove -y "x11-*"
+  sudo apt --purge remove -y "x11-* lxsession"
   sudo apt --purge -y autoremove
   sudo apt update
   sudo apt upgrade -y
