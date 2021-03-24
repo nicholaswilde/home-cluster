@@ -1,4 +1,7 @@
 # Home Cluster
+[![k3s](https://img.shields.io/badge/k3s-v1.17.5-orange?style=for-the-badge)](https://k3s.io/)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge)](https://github.com/pre-commit/pre-commit)
+[![ci](https://img.shields.io/github/workflow/status/nicholaswilde/home-cluster/ci?label=ci&logo=github&style=for-the-badge)](https://github.com/nicholaswilde/home-cluster/actions/workflows/ci.yaml)
 
 My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 
