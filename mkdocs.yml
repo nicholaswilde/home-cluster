@@ -17,6 +17,7 @@ nav:
   - Operating System: operating-system.md
   - K3S: k3s.md
   - Flux: flux.md
+  - Ansible: ansible.md
   - Restoration: restoration.md
 
 theme:
