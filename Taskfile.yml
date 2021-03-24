@@ -1,6 +1,15 @@
 ---
 version: '3'
 
+vars:
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+  ANSIBLE_DIR: "{{.PROJECT_DIR}}/server/ansible"
+
+includes:
+  ansible: .taskfiles/ansible.yaml
+
 tasks:
   lint:
     desc: Lint the files

@@ -1,0 +1,11 @@
+---
+packages:
+  apt_install:
+    - apt-transport-https
+    - arptables
+    - ca-certificates
+    - curl
+  apt_remove:
+    - cloud-init
+    - x11-*
+    - lxsession

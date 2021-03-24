@@ -3,6 +3,7 @@ extends: default
 
 ignore: |
   **/gotk-components.yaml
+  /server/ansible/roles/xanmanning.k3s/**
 
 rules:
   line-length:
