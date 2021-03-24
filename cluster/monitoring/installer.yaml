@@ -13,3 +13,20 @@ spec:
         name: nicholaswilde-charts
   interval: 30s
   targetNamespace: monitoring
+  values:
+    image:
+      pullPolicy: IfNotPresent
+      repository: ghcr.io/nicholaswilde/installer
+      tag: 0.2.9-ls3
+    ingress:
+      annotations:
+        nginx.ingress.kubernetes.io/whitelist-source-range: 192.168.1.0/24
+      enabled: true
+      hosts:
+        - host: installer.192.168.1.199.nip.io
+          paths:
+            - path: /
+              pathType: Prefix
+    service:
+      port:
+        port: 3000
