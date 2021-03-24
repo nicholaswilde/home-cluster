@@ -16,6 +16,7 @@ nav:
   - Specs: specs.md
   - Operating System: operating-system.md
   - K3S: k3s.md
+  - Flux: flux.md
   - Restoration: restoration.md
 
 theme:
