@@ -15,6 +15,7 @@ nav:
   - Home: index.md
   - Specs: specs.md
   - Operating System: operating-system.md
+  - K3S: k3s.md
   - Restoration: restoration.md
 
 theme:
