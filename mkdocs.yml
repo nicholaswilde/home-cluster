@@ -1,8 +1,10 @@
 ---
 site_name: Home Cluster
-site_description: My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
+site_description: >-
+  My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 site_author: Nicholas Wilde
 site_url: https://nicholaswilde.github.io/home-cluster
+copyright: Copyright &copy; 2021 Nicholas Wilde
 dev_addr: '0.0.0.0:8000'
 
 # Repository
@@ -19,6 +21,17 @@ nav:
   - Flux: flux.md
   - Ansible: ansible.md
   - Restoration: restoration.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nicholaswilde
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/nicholaswilde
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/wildewoodworking/
+    - icon: fontawesome/solid/key
+      link: https://github.com/nicholaswilde.gpg
 
 theme:
   name: material

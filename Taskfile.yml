@@ -14,7 +14,30 @@ tasks:
   lint:
     desc: Lint the files
     cmds:
-      - yamllint .
+      - task: yamllint
+      - task: markdownlint
+      - task: linkcheck
+
+  markdownlint:
+    desc: Run markdownlint-cli
+    cmds:
+      - >-
+        docker run --rm -it -v ${PWD}:/markdown:ro
+        06kellyjac/markdownlint-cli .
+
+  linkcheck:
+    desc: Run markdown-link-check
+    cmds:
+      - ./hack/linkcheck.sh
+    ignore_error: true
+
+  yamllint:
+    desc: Run yamllint
+    cmds:
+      - >-
+        docker run --rm -it -v ${PWD}:${PWD}:ro -w ${PWD}
+        programmerassistant/yamllint yamllint .
+
   serve:
     desc: Serve the mkdocs site.
     cmds:
