@@ -28,3 +28,8 @@ Verify that the controllers have been upgrade with:
 ```shell
 flux check
 ```
+
+!!! Note
+    If you are having trouble restoring you cluster, try deleting the deploy key
+    from your cluster repo.
+    https://github.com/nicholaswilde/home-cluster/settings/keys
