@@ -5,8 +5,8 @@ Specifications for my home cluster.
 ## :computer:&nbsp; Software
 
 - :strawberry:&nbsp; [Raspberry Pi OS 64-bit](./operating-system.md)
-- [k3s](https://k3s.io/)
-- [Flux](https://toolkit.fluxcd.io/)
+- <img src="../assets/images/k3s.png" width="24" height="24" style="vertical-align:middle"/>&nbsp; [k3s](https://k3s.io/)
+- <img src="https://github.com/fluxcd/flux2/raw/gh-pages/_files/flux-icon.svg" width="24" height="24" style="vertical-align:middle"/>&nbsp; [Flux](https://toolkit.fluxcd.io/)
 
 ## :gear:&nbsp; Hardware
 
