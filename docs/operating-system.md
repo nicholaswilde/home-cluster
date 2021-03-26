@@ -15,6 +15,10 @@ disk space on the CM3+.
 
 Download the latest release of the [RPiOS 64bit][RPiOS].
 
+I've recently started [building my own] RPiOS 64bit lite version since the
+official version has been [stuck in beta for so long][beta] and it is only
+offered in the desktop/full version.
+
 Alternatively, you can [download the 32-bit Lite version][32bit] that doesn't
 need any modifications.
 
@@ -113,3 +117,5 @@ docker run --rm hello-world
 [this guide]: https://www.raspberrypi.org/forums/viewtopic.php?t=133691
 [ssh]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 [docker]: https://docs.docker.com/engine/install/debian/#install-using-the-repository
+[beta]: https://www.raspberrypi.org/forums/viewtopic.php?f=117&t=275370
+[build my own]: https://github.com/nicholaswilde/pi-gen/releases
