@@ -40,7 +40,73 @@ flux bootstrap github \
   --personal
 ```
 
-## :wheel_of_dharma:&nbsp; Helm Example
+## Cluster Directory Layout
+
+```shell
+./cluster
+  ├── flux-system
+  │   ├── gotk-components.yaml
+  │   ├── gotk-sync.yaml
+  │   ├── helm
+  │   └── kustomization.yaml
+  ├── namespace1
+  │   ├── chart1.yaml
+  │   └── namespace1.yaml
+  ├── namespace2
+  │   ├── namespace2.yaml
+  │   ├── chart2
+  │   │   └── chart2.yaml
+  │   └── chart3
+  │       └── chart3.yaml
+  └── sources
+      └── some-repo-charts.yaml
+```
+
+## Namespaces
+
+Each cluster namespace gets its own directory in the `cluster` directory and
+the namespace is creates via a `namespace.yaml` manifest located in the
+namespace directory.
+
+```yaml
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <namespace name>
+```
+
+### Create a namespace using Task
+
+A namespace can also be created using `task`. The task will create a directory
+if it doesn't already exist as well as the `namespace.yaml` manifest.
+
+From the repo root directory, run the following:
+
+```shell
+task ns:create NAME=<namespace name>
+```
+
+## Helm Charts
+
+Helm charts live inside the namespace directory. Whether or not the charts get
+their own directory depends on if there are multiple charts inside that
+namespace.
+
+## :wheel_of_dharma:&nbsp; HelmRelease Example
+
+### Source
+
+The source file is typically added to the `./cluster/sources` directory.
+
+```shell
+flux create source helm managed-nfs-storage \
+    --url https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/ \
+    --export | tee managed-nfs-storage.yaml
+```
+
+All below commands are performed inside the `./cluster/<namespace name>`
+directory.
 
 ### values.yaml
 
@@ -54,11 +120,10 @@ storageClass:
   name: managed-nfs-storage
 ```
 
-```shell
-flux create source helm managed-nfs-storage \
-    --url https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/ \
-    --export | tee managed-nfs-storage.yaml
-```
+### HelmRelease
+
+The latter part of `source` parameter needs to match the name of the
+`helm source`.
 
 ```shell
 flux create helmrelease \
