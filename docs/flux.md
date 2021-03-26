@@ -1,12 +1,12 @@
 # Flux
 
-## Installation
+## :floppy_disk:&nbsp; Installation
 
 ```shell
 brew install fluxcd/tap/flux
 ```
 
-## Getting Started
+## :man_running:&nbsp; Getting Started
 
 Bash completion
 
@@ -27,6 +27,10 @@ flux check --pre
 
 Run the bootstrap command to connect the cluster to a repo.
 
+!!! Note:
+    Ensure that you have the `GITHUB_USER` environmental variable set
+    and that you are already logged into the git repository.
+
 ```shell
 flux bootstrap github \
   --owner=$GITHUB_USER \
@@ -36,7 +40,7 @@ flux bootstrap github \
   --personal
 ```
 
-## Helm Example
+## :wheel_of_dharma:&nbsp Helm Example
 
 ### values.yaml
 
