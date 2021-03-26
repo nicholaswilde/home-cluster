@@ -19,6 +19,12 @@ I've recently started [building my own] RPiOS 64-bit lite version since the
 official version has been [stuck in beta for so long][beta] and it is only
 offered in the desktop/full version.
 
+You may download the latest release by using the following:
+
+```shell
+wget https://github.com/nicholaswilde/pi-gen/releases/latest/download/raspios-buster-arm64-lite.zip
+```
+
 Alternatively, you can [download the 32-bit Lite version][32bit] that doesn't
 need any modifications.
 
@@ -33,7 +39,7 @@ Alternatively, a [compute module I/O board][1] can be used to flash the CM3+.
 
 ## :wrench:&nbsp; Modification
 
-!!! Note:
+!!! Note
     This step may be skipped if you are already using the `lite` version.
 
 To rip out all of the desktop related apps in the full version, simply remove
@@ -75,7 +81,7 @@ sudo hostnamectl set-hostname <hostname>
 ### :key:&nbsp; SSH Key
 
 [Import your public SSH key][ssh] :computer:&nbsp; so that you don't need to enter the dang
-password anywhere when logging into each node.
+password anymore when logging into each node.
 
 !!! Note
     Your public key needs to exist on GiHub at https://github.com/username.keys
