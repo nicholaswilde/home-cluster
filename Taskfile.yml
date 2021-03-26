@@ -11,6 +11,13 @@ includes:
   ansible: .taskfiles/ansible.yaml
 
 tasks:
+  build:
+    desc: Build documentation using Docker and mkdocs-material
+    cmds:
+      - >-
+        docker run --rm -it -v ${PWD}:/docs --platform linux/amd64
+        squidfunk/mkdocs-material build -f ./mkdocs.yml
+
   lint:
     desc: Lint the files
     cmds:
@@ -41,7 +48,14 @@ tasks:
   serve:
     desc: Serve the mkdocs site.
     cmds:
-      - mkdocs serve
+      - >-
+        docker run --rm -it -p {{ .PORT }}:{{ .PORT}} -v ${PWD}:/docs
+        --platform linux/amd64 squidfunk/mkdocs-material serve
+        --dev-addr 0.0.0.0:{{ .PORT }} -f ./mkdocs.yml
+    deps:
+      - task: build
+    vars:
+      PORT: 8000
 
   default:
     cmds:
