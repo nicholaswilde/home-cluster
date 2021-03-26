@@ -9,7 +9,11 @@ I'm currently using the [k3s-ansible] repo to deploy K3S on my cluster.
 
 My plan is eventually create my own ansible playbook and save it in this repo.
 
-After making a copy of the inventory directory, be sure to change the values in group_vars/all.yaml file
+After making a copy of the inventory directory, be sure to change the values in
+`group_vars/all.yaml` file.
+
+The easiest way to see the latest `k3s_version` is to browse the
+[k3s upgrade channels].
 
 ```yaml
 # group_vars/all.yml
@@ -44,3 +48,4 @@ ansible-playbook reset.yml
 
 [K3S]: https://k3s.io/
 [k3s-ansible]: https://github.com/k3s-io/k3s-ansible
+[k3s upgrade channels]: https://update.k3s.io/v1-release/channels
