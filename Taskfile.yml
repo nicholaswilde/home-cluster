@@ -9,6 +9,7 @@ vars:
 
 includes:
   ansible: .taskfiles/ansible.yaml
+  ns: .taskfiles/ns.yaml
 
 tasks:
   build:

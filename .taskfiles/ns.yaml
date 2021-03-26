@@ -1,0 +1,34 @@
+---
+version: '3'
+
+tasks:
+  create:
+    desc: Create a namespace
+    cmds:
+      - >-
+        test -d "{{ .CLUSTER_DIR }}/{{ .NAME }}" ||
+        mkdir "{{ .CLUSTER_DIR }}/{{ .NAME }}"
+      - |
+        cat >"{{ .CLUSTER_DIR }}/{{ .NAME }}/namespace.yaml"<<-EOF
+        ---
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: {{ .NAME }}
+        EOF
+    deps:
+      - _check-name
+      - _check-file
+    silent: true
+
+  _check-name:
+    cmds:
+      - test ! -z "{{ .NAME }}" || (echo "NAME is not set"; exit 1;)
+    silent: true
+
+  _check-file:
+    cmds:
+      - >-
+        test ! -f "{{ .CLUSTER_DIR }}/test/namespace.yaml" ||
+        (echo "File already exists ./{{ .NAME }}/namespace.yaml"; exit 1;)
+    silent: true
