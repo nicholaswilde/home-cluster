@@ -3,6 +3,8 @@ all:
   children:
     rpis:
       hosts:
+        pi-w:
+          ansible_host: 192.168.1.29
         pi-02:
           ansible_host: 192.168.1.250
         pi-04:
