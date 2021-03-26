@@ -1,3 +1,4 @@
 site/
 *.swp
 server/ansible/roles/xanmanning.k3s/
+server/ansible/
