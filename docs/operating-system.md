@@ -88,17 +88,16 @@ ssh-import-id-gh <username>
 
 Last thing I need to do is [install Docker][docker] on the master and each node.
 
-!!! Note
-    This setup is only for `arm64` architectures on a Debian/RPiOS OS.
-
 ```shell
 (
-  sudo apt-get update
-  sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
-  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-  echo "deb [arch=arm64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-  sudo apt update
-  sudo apt install -y docker-ce docker-ce-cli containerd.io
+  set -x; sudo apt-get update &&
+  sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release &&
+  DIST=$(lsb_release -is | tr '[:upper:]' '[:lower:]') &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(armhf\)\(64\)\?.*/\1\2hf/' -e 's/aarch64$/arm64/')" &&
+  curl -fsSL "https://download.docker.com/linux/${DIST}/gpg" | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg &&
+  echo "deb [arch=${ARCH} signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/${DIST} $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  sudo apt update &&
+  sudo apt install -y docker-ce docker-ce-cli containerd.io &&
   sudo usermod -aG docker $(whoami)
 )
 ```
