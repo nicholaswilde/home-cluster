@@ -40,7 +40,7 @@ flux bootstrap github \
   --personal
 ```
 
-## :wheel_of_dharma:&nbsp Helm Example
+## :wheel_of_dharma:&nbsp; Helm Example
 
 ### values.yaml
 
