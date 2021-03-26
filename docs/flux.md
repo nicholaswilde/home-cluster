@@ -27,7 +27,7 @@ flux check --pre
 
 Run the bootstrap command to connect the cluster to a repo.
 
-!!! Note:
+!!! Note
     Ensure that you have the `GITHUB_USER` environmental variable set
     and that you are already logged into the git repository.
 
