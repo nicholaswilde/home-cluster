@@ -13,9 +13,9 @@ disk space on the CM3+.
 
 ## :floppy_disk:&nbsp;  Download
 
-Download the latest release of the [RPiOS 64bit][RPiOS].
+Download the latest release of the [RPiOS 64-bit][RPiOS].
 
-I've recently started [building my own] RPiOS 64bit lite version since the
+I've recently started [building my own] RPiOS 64-bit lite version since the
 official version has been [stuck in beta for so long][beta] and it is only
 offered in the desktop/full version.
 
@@ -33,8 +33,11 @@ Alternatively, a [compute module I/O board][1] can be used to flash the CM3+.
 
 ## :wrench:&nbsp; Modification
 
-To rip out all of the desktop related apps, simply remove any modules that are
-related to X11.
+!!! Note:
+    This step may be skipped if you are already using the `lite` version.
+
+To rip out all of the desktop related apps in the full version, simply remove
+any modules that are related to X11.
 
 ```shell
 (
@@ -49,6 +52,9 @@ I didn't spend too much time stripping down the OS to the bare essentials
 because I wanted to get my cluster up and running. You may reverse
 engineer [this guide] to further clean up the OS. Suggestions are always
 welcome!
+
+You can also go through the `stage3, 4, & 5` folders in the official [pi-gen]
+repo and remove all of those packages as well.
 
 Reboot if needed.
 
@@ -118,4 +124,5 @@ docker run --rm hello-world
 [ssh]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 [docker]: https://docs.docker.com/engine/install/debian/#install-using-the-repository
 [beta]: https://www.raspberrypi.org/forums/viewtopic.php?f=117&t=275370
-[build my own]: https://github.com/nicholaswilde/pi-gen/releases
+[building my own]: https://github.com/nicholaswilde/pi-gen/releases
+[pi-gen]: https://github.com/RPi-Distro/pi-gen
