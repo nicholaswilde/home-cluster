@@ -29,6 +29,6 @@ tasks:
   _check-file:
     cmds:
       - >-
-        test ! -f "{{ .CLUSTER_DIR }}/test/namespace.yaml" ||
+        test ! -f "{{ .CLUSTER_DIR }}/{{ .NAME }}/namespace.yaml" ||
         (echo "File already exists ./{{ .NAME }}/namespace.yaml"; exit 1;)
     silent: true
