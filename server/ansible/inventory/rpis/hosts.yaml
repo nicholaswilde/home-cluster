@@ -9,5 +9,29 @@ all:
           ansible_host: 192.168.1.250
         pi-04:
           ansible_host: 192.168.1.192
-      vars:
-        ansible_user: pi
+      #vars:
+        #ansible_user: pi
+    control-nodes:
+      hosts:
+        turing-main:
+          ansible_host: 192.168.1.201
+      #vars:
+        #ansible_user: pi
+    generic-nodes:
+      hosts:
+        worker-02:
+          ansible_host: 192.168.1.202
+        worker-03:
+          ansible_host: 192.168.1.203
+        worker-04:
+          ansible_host: 192.168.1.189
+        worker-05:
+          ansible_host: 192.168.1.199
+        worker-06:
+          ansible_host: 192.168.1.149
+        worker-07:
+          ansible_host: 192.168.1.193
+      #vars:
+        #ansible_user: pi
+  vars:
+    ansible_user: pi

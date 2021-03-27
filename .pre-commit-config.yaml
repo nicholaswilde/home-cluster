@@ -6,12 +6,14 @@ repos:
       - id: yamllint
         name: Run yamllint
         description: Lint yaml files
+        entry: yamllint -c .github/.yamllint-config.yaml
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.27.1
     hooks:
       - id: markdownlint
         name: Run markdownlint
         description: Lint markdown files
+        entry: markdownlint -c .github/.markdownlint.yaml
   - repo: https://github.com/gruntwork-io/pre-commit
     rev: v0.1.12
     hooks:
