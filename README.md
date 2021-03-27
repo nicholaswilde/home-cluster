@@ -8,18 +8,26 @@
 
 My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 
+---
+
 ## :book:&nbsp; Documentation
 
 Documentation can be found [here](http://nicholaswilde.github.io/home-cluster).
+
+---
 
 ## :handshake:&nbsp; Thanks
 
 A lot of inspiration for my cluster came from the people that have shared their
 clusters over at [awesome-home-kubernetes].
 
+---
+
 ## :balance_scale:&nbsp; License
 
 [Apache 2.0 License](./LICENSE)
+
+---
 
 ## :pencil:&nbsp; Author
 
