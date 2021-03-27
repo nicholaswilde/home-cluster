@@ -10,6 +10,7 @@ vars:
 includes:
   ansible: .taskfiles/ansible.yaml
   ns: .taskfiles/ns.yaml
+  lint: .taskfiles/lint.yaml
 
 tasks:
   build:
@@ -22,29 +23,34 @@ tasks:
   lint:
     desc: Lint the files
     cmds:
-      - task: yamllint
-      - task: markdownlint
-      - task: linkcheck
+      - task: lint:yamllint
+      - task: lint:markdownlint
+      - task: lint:linkcheck
 
   markdownlint:
     desc: Run markdownlint-cli
     cmds:
       - >-
         docker run --rm -it -v ${PWD}:/markdown:ro
-        06kellyjac/markdownlint-cli .
+        06kellyjac/markdownlint-cli
+        -c ./.github/.markdownlint.yaml .
+    silent: true
 
   linkcheck:
     desc: Run markdown-link-check
     cmds:
       - ./hack/linkcheck.sh
     ignore_error: true
+    silent: true
 
   yamllint:
     desc: Run yamllint
     cmds:
       - >-
         docker run --rm -it -v ${PWD}:${PWD}:ro -w ${PWD}
-        programmerassistant/yamllint yamllint .
+        programmerassistant/yamllint yamllint
+        -c ./.github/.yamllint-config.yaml .
+    silent: true
 
   serve:
     desc: Serve the mkdocs site.
