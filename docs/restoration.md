@@ -32,6 +32,5 @@ flux check
 !!! Note
     If you are having trouble restoring you cluster, try deleting the
     [deploy key][1] from your cluster repo.
-    https://github.com/nicholaswilde/home-cluster/settings/keys
 
 [1]: https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys

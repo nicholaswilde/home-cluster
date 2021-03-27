@@ -22,7 +22,8 @@ k3s_version: v1.17.5+k3s1
 ansible_user: pi
 ```
 
-I also add the following `extra_server_args` to ensure that pods don't bog down my master.
+I also add the following `extra_server_args` to ensure that pods don't bog down
+my master.
 
 ```yaml
 # group_vars/all.yml

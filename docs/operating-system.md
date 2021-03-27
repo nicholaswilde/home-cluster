@@ -80,11 +80,11 @@ sudo hostnamectl set-hostname <hostname>
 
 ### :key:&nbsp; SSH Key
 
-[Import your public SSH key][ssh] :computer:&nbsp; so that you don't need to enter the dang
-password anymore when logging into each node.
+[Import your public SSH key][ssh] :computer:&nbsp; so that you don't need to
+enter the dang password anymore when logging into each node.
 
 !!! Note
-    Your public key needs to exist on GiHub at https://github.com/username.keys
+    Your public key needs to exist on GiHub at <https://github.com/nicholaswilde.keys>
 
 ```shell
 ssh-import-id-gh <username>
