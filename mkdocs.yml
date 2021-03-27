@@ -21,7 +21,9 @@ nav:
   - Flux: flux.md
   - Ansible: ansible.md
   - Namespaces:
-      - system-upgrade: system-upgrade.md
+      - dev: namespaces/dev.md
+      - system-upgrade: namespaces/system-upgrade.md
+      - test: namespaces/test.md
   - Restoration: restoration.md
 
 extra:
