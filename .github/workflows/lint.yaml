@@ -9,21 +9,14 @@ on:  # yamllint disable-line rule:truthy
   pull_request:
 
 jobs:
-  yamllint:
+  yaml:
     name: Yamllint
     runs-on: ubuntu-20.04
-
     steps:
-      - name: Check out the codebase.
-        uses: actions/checkout@v2
-
-      - name: Set up Python 3.
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v2
         with:
-          python-version: '3.x'
-
-      - name: Install test dependencies.
-        run: pip3 install yamllint
-
-      - name: Lint all the YAMLs.
-        run: yamllint .
+          fetch-depth: 1
+      - name: Lint YAML
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          config_file: "./.github/yamllint-config.yaml"
