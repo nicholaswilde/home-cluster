@@ -8,6 +8,7 @@ vars:
   ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
   ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
   ANSIBLE_GROUPS: "control-nodes:generic-nodes"
+  ANSIBLE_INVENTORY: "rpis"
 
 tasks:
 
@@ -16,7 +17,7 @@ tasks:
     cmds:
       - >-
         ansible "{{.ANSIBLE_GROUPS}}"
-        -i "{{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yaml"
+        -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
         --one-line -m ping
     silent: true
 
@@ -25,7 +26,7 @@ tasks:
     cmds:
       - >-
         ansible "{{.ANSIBLE_GROUPS}}"
-        -i "{{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yaml"
+        -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
         --list-hosts
     silent: true
 
@@ -34,8 +35,9 @@ tasks:
     cmds:
       - >-
         ansible-playbook
-        -i "{{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yaml"
-        "{{.ANSIBLE_PLAYBOOK_DIR}}/home-cluster/upgrade.yaml"
+        -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
+        "{{.ANSIBLE_PLAYBOOK_DIR}}/rpios/upgrade.yaml"
+        -l {{ .ANSIBLE_GROUPS }}
     silent: true
 
   reboot:
@@ -43,7 +45,7 @@ tasks:
     cmds:
       - >-
         ansible "{{.ANSIBLE_GROUPS}}"
-        -i "{{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yaml"
+        -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
         -m reboot
     silent: true
 
@@ -51,4 +53,13 @@ tasks:
     desc: Download all ansible requirements
     cmds:
       - "ansible-galaxy install -r {{.ANSIBLE_DIR}}/requirements.yaml"
+    silent: true
+
+  vars:
+    desc: Print vars
+    cmds:
+      - printf "%s  %s\n" "ANSIBLE_PLAYBOOK_DIR" "{{ .ANSIBLE_PLAYBOOK_DIR }}"
+      - printf "%s %s\n" "ANSIBLE_INVENTORY_DIR" "{{ .ANSIBLE_INVENTORY_DIR }}"
+      - printf "%s        %s\n" "ANSIBLE_GROUPS" "{{ .ANSIBLE_GROUPS }}"
+      - printf "%s     %s\n" "ANSIBLE_INVENTORY" "{{ .ANSIBLE_INVENTORY }}"
     silent: true
