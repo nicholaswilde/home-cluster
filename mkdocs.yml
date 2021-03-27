@@ -20,6 +20,8 @@ nav:
   - K3S: k3s.md
   - Flux: flux.md
   - Ansible: ansible.md
+  - Namespaces:
+      - system-upgrade: system-upgrade.md
   - Restoration: restoration.md
 
 extra:
