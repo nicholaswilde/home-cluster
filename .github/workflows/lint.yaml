@@ -14,9 +14,23 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
       - name: Lint YAML
         uses: ibiqlik/action-yamllint@v3
         with:
           config_file: "./.github/.yamllint-config.yaml"
+  markdown-link-check:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          folder-path: 'docs'
+  markdownlint-cli:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Markdownlint-cli
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          files: docs
+          config_file: './.github/.markdownlint.yaml'
