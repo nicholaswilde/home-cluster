@@ -22,6 +22,7 @@ spec:
       blocking:
         blackLists:
           ads:
+            # https://oisd.nl/
             - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
         whiteLists:
           ads:
@@ -43,3 +44,27 @@ spec:
         enabled: false
       startup:
         enabled: false
+    service:
+      additionalServices:
+        - enabled: true
+          externalIPs:
+            - 192.168.1.202
+          externalTrafficPolicy: Local
+          nameSuffix: dns-tcp
+          port:
+            name: dns-tcp
+            port: 53
+            protocol: TCP
+            targetPort: 53
+          type: LoadBalancer
+        - enabled: true
+          externalIPs:
+            - 192.168.1.202
+          externalTrafficPolicy: Local
+          nameSuffix: dns-udp
+          port:
+            name: dns-udp
+            port: 53
+            protocol: UDP
+            targetPort: 53
+          type: LoadBalancer
