@@ -20,6 +20,11 @@ spec:
         externalResolvers:
           - tcp-tls:4838af.dns1.nextdns.io:853
           - tcp-tls:4838af.dns2.nextdns.io:853
+          - tcp+udp:8.8.8.8
+          - tcp+udp:8.8.4.4
+          - tcp+udp:1.1.1.1
+          - tcp-tls:1.0.0.1:853
+          - https://cloudflare-dns.com/dns-query
       blocking:
         blackLists:
           ads:
