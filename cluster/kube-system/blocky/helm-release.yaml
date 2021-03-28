@@ -22,7 +22,6 @@ spec:
       blocking:
         blackLists:
           ads:
-            # https://oisd.nl/
             - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
         whiteLists:
           ads:
@@ -37,3 +36,10 @@ spec:
     image:
       repository: spx01/blocky
       tag: v0.13
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
