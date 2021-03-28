@@ -28,3 +28,6 @@ repos:
       - id: markdown-link-check
         name: Run markdown-link-check
         description: Check link in markdown files
+      - id: shellcheck
+        name: Run shellcheck
+        description: Performs linting on bash scripts
