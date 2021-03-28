@@ -20,6 +20,7 @@ nav:
   - K3S: k3s.md
   - Flux: flux.md
   - Ansible: ansible.md
+  - Mozilla SOPS: sops.md
   - Namespaces:
       - dev: namespaces/dev.md
       - system-upgrade: namespaces/system-upgrade.md

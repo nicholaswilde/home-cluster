@@ -9,6 +9,7 @@ Specifications for my home cluster.
   style="vertical-align:middle"/>&nbsp; [k3s](https://k3s.io/)
 - <img src="https://github.com/fluxcd/flux2/raw/gh-pages/_files/flux-icon.svg"
   width="24" height="24" style="vertical-align:middle"/>&nbsp; [Flux](https://toolkit.fluxcd.io/)
+- :key:&nbsp; [Mozilla SOPS](./sops.md)
 
 ## :gear:&nbsp; Hardware
 
