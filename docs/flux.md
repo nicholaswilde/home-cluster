@@ -118,6 +118,23 @@ nfs:
 storageClass:
   defaultClass: false
   name: managed-nfs-storage
+resources:
+  limits:
+    cpu: '1'
+    memory: '512Mi'
+  requests:
+    cpu: '500m'
+    memory: '256Mi'
+```
+
+```yaml
+resources:
+  limits:
+    cpu: '200m'
+    memory: '256Mi'
+  requests:
+    cpu: '100m'
+    memory: '128Mi'
 ```
 
 ### HelmRelease
