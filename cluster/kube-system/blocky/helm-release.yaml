@@ -7,6 +7,7 @@ metadata:
 spec:
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: blocky
       sourceRef:
         kind: HelmRepository
@@ -35,7 +36,7 @@ spec:
     env:
       TZ: America/Los_Angeles
     image:
-      repository: spx01/blocky
+      repository: ghcr.io/0xerr0r/blocky
       tag: v0.13
     probes:
       liveness:
@@ -44,6 +45,11 @@ spec:
         enabled: false
       startup:
         enabled: false
+    resources:
+      requests:
+        memory: 100Mi
+      limits:
+        memory: 250Mi
     service:
       additionalServices:
         - enabled: true
