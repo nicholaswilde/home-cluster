@@ -1,0 +1,9 @@
+---
+version: '3'
+
+tasks:
+  import:
+    desc: Import the public gpg key to encrypt secrects
+    cmds:
+      - gpg --import {{ .CLUSTER_DIR }}/.sops.pub.asc
+    silent: true

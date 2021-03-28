@@ -8,9 +8,10 @@ vars:
   ANSIBLE_DIR: "{{.PROJECT_DIR}}/server/ansible"
 
 includes:
-  ansible: .taskfiles/ansible.yaml
-  ns: .taskfiles/ns.yaml
-  lint: .taskfiles/lint.yaml
+  ansible: ./.taskfiles/ansible.yaml
+  ns: ./.taskfiles/ns.yaml
+  lint: ./.taskfiles/lint.yaml
+  gpg: ./.taskfiles/gpg.yaml
 
 tasks:
   build:
