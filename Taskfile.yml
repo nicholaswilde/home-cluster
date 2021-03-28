@@ -12,58 +12,15 @@ includes:
   ns: ./.taskfiles/ns.yaml
   lint: ./.taskfiles/lint.yaml
   gpg: ./.taskfiles/gpg.yaml
+  mkdocs: ./.taskfiles/mkdocs.yaml
 
 tasks:
-  build:
-    desc: Build documentation using Docker and mkdocs-material
-    cmds:
-      - >-
-        docker run --rm -it -v ${PWD}:/docs --platform linux/amd64
-        squidfunk/mkdocs-material build -f ./mkdocs.yml
-
   lint:
     desc: Lint the files
     cmds:
       - task: lint:yamllint
       - task: lint:markdownlint
       - task: lint:linkcheck
-
-  markdownlint:
-    desc: Run markdownlint-cli
-    cmds:
-      - >-
-        docker run --rm -it -v ${PWD}:/markdown:ro
-        06kellyjac/markdownlint-cli
-        -c ./.github/.markdownlint.yaml .
-    silent: true
-
-  linkcheck:
-    desc: Run markdown-link-check
-    cmds:
-      - ./hack/linkcheck.sh
-    ignore_error: true
-    silent: true
-
-  yamllint:
-    desc: Run yamllint
-    cmds:
-      - >-
-        docker run --rm -it -v ${PWD}:${PWD}:ro -w ${PWD}
-        programmerassistant/yamllint yamllint
-        -c ./.github/.yamllint-config.yaml .
-    silent: true
-
-  serve:
-    desc: Serve the mkdocs site.
-    cmds:
-      - >-
-        docker run --rm -it -p {{ .PORT }}:{{ .PORT}} -v ${PWD}:/docs
-        --platform linux/amd64 squidfunk/mkdocs-material serve
-        --dev-addr 0.0.0.0:{{ .PORT }} -f ./mkdocs.yml
-    deps:
-      - task: build
-    vars:
-      PORT: 8000
 
   default:
     cmds:
