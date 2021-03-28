@@ -13,6 +13,7 @@ includes:
   lint: ./.taskfiles/lint.yaml
   gpg: ./.taskfiles/gpg.yaml
   mkdocs: ./.taskfiles/mkdocs.yaml
+  docs: ./.taskfiles/docs.yaml
 
 tasks:
   lint:
