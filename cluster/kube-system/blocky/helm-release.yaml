@@ -16,6 +16,9 @@ spec:
   targetNamespace: kube-system
   values:
     config: |
+      port: 53
+      httpPort: 4000
+      logLevel: info
       upstream:
         externalResolvers:
           - tcp-tls:4838af.dns1.nextdns.io:853
@@ -54,9 +57,11 @@ spec:
         enabled: false
     resources:
       requests:
-        memory: 100Mi
+        cpu: '100m'
+        memory: '128Mi'
       limits:
-        memory: 250Mi
+        cpu: '200m'
+        memory: '255Mi'
     service:
       additionalServices:
         - enabled: true
