@@ -9,11 +9,13 @@ vars:
 
 includes:
   ansible: ./.taskfiles/ansible.yaml
-  ns: ./.taskfiles/ns.yaml
-  lint: ./.taskfiles/lint.yaml
-  gpg: ./.taskfiles/gpg.yaml
-  mkdocs: ./.taskfiles/mkdocs.yaml
+  blocky: ./.taskfiles/blocky.yaml
   docs: ./.taskfiles/docs.yaml
+  gpg: ./.taskfiles/gpg.yaml
+  lint: ./.taskfiles/lint.yaml
+  mkdocs: ./.taskfiles/mkdocs.yaml
+  ns: ./.taskfiles/ns.yaml
+  values: ./.taskfiles/values.yaml
 
 tasks:
   lint:
