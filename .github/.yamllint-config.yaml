@@ -4,6 +4,7 @@ extends: default
 ignore: |
   **/gotk-components.yaml
   /server/ansible/roles/xanmanning.k3s/**
+  **/flux-system/**
 
 rules:
   line-length:
