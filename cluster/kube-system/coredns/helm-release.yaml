@@ -24,7 +24,7 @@ spec:
     serviceType: LoadBalancer
     service:
       externalIPs:
-        - 192.168.69.180
+        - 192.168.1.1
       externalTrafficPolicy: Local
     servers:
       - zones:
