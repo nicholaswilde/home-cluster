@@ -7,7 +7,9 @@ metadata:
 spec:
   chart:
     spec:
+      # renovate: registryUrl=https://nicholaswilde.github.com/helm-charts/
       chart: installer
+      version: 0.2.7
       sourceRef:
         kind: HelmRepository
         name: nicholaswilde-charts
@@ -23,7 +25,7 @@ spec:
         nginx.ingress.kubernetes.io/whitelist-source-range: 192.168.1.0/24
       enabled: true
       hosts:
-        - host: installer.192.168.1.199.nip.io
+        - host: installer.192.168.1.202.nip.io
           paths:
             - path: /
               pathType: Prefix
