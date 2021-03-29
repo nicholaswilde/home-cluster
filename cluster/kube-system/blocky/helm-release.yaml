@@ -28,6 +28,10 @@ spec:
           - tcp+udp:1.1.1.1
           - tcp-tls:1.0.0.1:853
           - https://cloudflare-dns.com/dns-query
+      conditional:
+        mapping:
+          # CoreDNS IP
+          wilde.io: udp:192.168.1.1
       blocking:
         blackLists:
           ads:
