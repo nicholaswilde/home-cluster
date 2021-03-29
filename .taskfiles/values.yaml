@@ -1,0 +1,80 @@
+---
+version: '3'
+
+tasks:
+  probes:
+    desc: Turn off probes
+    cmds:
+      - >-
+        test -d "{{ .CLUSTER_DIR }}/{{ .NS }}" ||
+        mkdir "{{ .CLUSTER_DIR }}/{{ .NS }}"
+      - >-
+        test -d "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}" ||
+        mkdir "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}"
+      - |
+        cat >"{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/values.yaml"<<-EOF
+        probes:
+          liveness:
+            enabled: false
+          readiness:
+            enabled: false
+        EOF
+    deps:
+      - _check-ns
+      - _check-name
+
+  res-high:
+    desc: Set resources to high
+    cmds:
+      - >-
+        test -d "{{ .CLUSTER_DIR }}/{{ .NS }}" ||
+        mkdir "{{ .CLUSTER_DIR }}/{{ .NS }}"
+      - >-
+        test -d "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}" ||
+        mkdir "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}"
+      - |
+        cat >"{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/values.yaml"<<-EOF
+        resources:
+          limits:
+            cpu: '1'
+            memory: '512Mi'
+          requests:
+            cpu: '500m'
+            memory: '256Mi'
+        EOF
+    deps:
+      - _check-ns
+      - _check-name
+
+  res-low:
+    desc: Set resources to low
+    cmds:
+      - >-
+        test -d "{{ .CLUSTER_DIR }}/{{ .NS }}" ||
+        mkdir "{{ .CLUSTER_DIR }}/{{ .NS }}"
+      - >-
+        test -d "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}" ||
+        mkdir "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}"
+      - |
+        cat >"{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/values.yaml"<<-EOF
+        resources:
+          limits:
+            cpu: '200m'
+            memory: '256Mi'
+          requests:
+            cpu: '100m'
+            memory: '128Mi'
+        EOF
+    deps:
+      - _check-ns
+      - _check-name
+
+  _check-name:
+    cmds:
+      - test ! -z "{{ .NAME }}" || (echo "NAME is not set"; exit 1;)
+    silent: true
+
+  _check-ns:
+    cmds:
+      - test ! -z "{{ .NS }}" || (echo "NS is not set"; exit 1;)
+    silent: true
