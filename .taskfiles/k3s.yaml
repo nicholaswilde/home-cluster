@@ -1,0 +1,21 @@
+---
+version: '3'
+
+vars:
+  NAME:
+    sh: >-
+      kubectl get nodes -o=jsonpath="{range .items[*]}{.metadata.name}"
+      -l node-role.kubernetes.io/master=true
+
+tasks:
+  taint:
+    desc: Taint the main node with CriticalAddonsOnly=true:NoExecute
+    cmds:
+      - kubectl taint nodes {{ .NAME }} CriticalAddonsOnly=true:NoExecute
+    silent: true
+
+  untaint:
+    desc: Untaint the main node with CriticalAddonsOnly=true:NoExecute
+    cmds:
+      - kubectl taint nodes {{ .NAME }} CriticalAddonsOnly=true:NoExecute-
+    silent: true

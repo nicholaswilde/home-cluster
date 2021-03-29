@@ -12,6 +12,7 @@ includes:
   blocky: ./.taskfiles/blocky.yaml
   docs: ./.taskfiles/docs.yaml
   gpg: ./.taskfiles/gpg.yaml
+  k3s: ./.taskfiles/k3s.yaml
   lint: ./.taskfiles/lint.yaml
   mkdocs: ./.taskfiles/mkdocs.yaml
   ns: ./.taskfiles/ns.yaml
