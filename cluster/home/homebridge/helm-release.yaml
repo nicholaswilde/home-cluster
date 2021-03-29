@@ -35,7 +35,7 @@ spec:
         memory: 128Mi
     timezone: America/Los_Angeles
     probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
