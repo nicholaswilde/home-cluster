@@ -7,7 +7,9 @@ metadata:
 spec:
   chart:
     spec:
+      # renovate: registryUrl=https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
       chart: nfs-subdir-external-provisioner
+      version: 4.0.6
       sourceRef:
         kind: HelmRepository
         name: managed-nfs-storage
@@ -18,5 +20,6 @@ spec:
       path: /home/pi/nas/nfs
       server: 192.168.1.192
     storageClass:
-      defaultClass: false
+      defaultClass: true
       name: managed-nfs-storage
+      reclaimPolicy: Retain
