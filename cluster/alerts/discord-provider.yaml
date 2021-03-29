@@ -9,3 +9,4 @@ spec:
   channel: general
   secretRef:
     name: discord-url
+  Username: Flux
