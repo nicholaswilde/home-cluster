@@ -5,6 +5,7 @@ ignore: |
   **/gotk-components.yaml
   /server/ansible/roles/xanmanning.k3s/**
   **/flux-system/**
+  **/discord-secret.yaml
 
 rules:
   line-length:
