@@ -30,9 +30,11 @@ spec:
           ads:
             # https://oisd.nl/
             - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
+            - https://raw.githubusercontent.com/nicholaswilde/home-cluster/main/cluster/kube-system/blocky/blacklist.txt
         whiteLists:
           ads:
             - https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt
+            - https://raw.githubusercontent.com/nicholaswilde/home-cluster/main/cluster/kube-system/blocky/whitelist.txt
         clientGroupsBlock:
           default:
             - ads
