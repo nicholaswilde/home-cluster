@@ -1,0 +1,83 @@
+---
+version: '3'
+
+vars:
+  INGRESS_IP:
+    sh: >-
+      kubectl get all -n kube-system |
+      grep '^service/traefik ' |
+      awk '{print $4}'
+
+tasks:
+  create:
+    desc: Create a HelmRelease
+    cmds:
+      - >-
+        flux create helmrelease \
+          {{ .NAME }} \
+          --source HelmRepository/{{ .SOURCE }} \
+          --values {{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/values.yaml \
+          --chart {{ .NAME }} \
+          --chart-version {{ .VERSION }} \
+          --target-namespace {{ .NS }} \
+          --export \
+          | tee "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/helm-release.yaml"
+      - task: _add-renovate
+      # Remove the last line for linting reasons
+      - sed -i '$d' "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/helm-release.yaml"
+      - >-
+        test -z $EDITOR ||
+        $EDITOR "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/helm-release.yaml"
+    deps:
+      - _check-values
+      - _check-name
+      - _check-ns
+      - _check-source
+      - _check-version
+    silent: true
+
+  ingress:
+    desc: Show the ingress address
+    cmds:
+      - echo {{ .INGRESS_IP }}
+    silent: true
+
+  _add-renovate:
+    cmds:
+      - test ! -z "{{ .URL }}" || (echo "The URL could not be set"; exit 1;)
+      - |
+        sed -i 's@chart: test@# renovate: registryUrl={{ .URL }}\n      chart: test@' \
+        {{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/helm-release.yaml
+    vars:
+      URL:
+        sh: |
+          kubectl get HelmRepository {{ .SOURCE }} | \
+          grep {{ .SOURCE }} | awk '{print $2 }'
+    silent: true
+
+  _check-name:
+    cmds:
+      - test ! -z "{{ .NAME }}" || (echo "NAME is not set"; exit 1;)
+    silent: true
+
+  _check-ns:
+    cmds:
+      - test ! -z "{{ .NS }}" || (echo "NS is not set"; exit 1;)
+    silent: true
+
+  _check-source:
+    cmds:
+      - test ! -z "{{ .SOURCE }}" || (echo "SOURCE is not set"; exit 1;)
+    silent: true
+
+  _check-version:
+    cmds:
+      - test ! -z "{{ .VERSION }}" || (echo "VERSION is not set"; exit 1;)
+    silent: true
+
+  _check-values:
+    cmds:
+      - >-
+        test -f "{{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/values.yaml" ||
+        (echo "File does not exist ./{{ .NS }}/{{.NAME}}/values.yaml"; exit 1;)
+    silent: true

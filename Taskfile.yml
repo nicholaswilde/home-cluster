@@ -6,12 +6,14 @@ vars:
     sh: "git rev-parse --show-toplevel"
   CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
   ANSIBLE_DIR: "{{.PROJECT_DIR}}/server/ansible"
+  TZ: "America/Los_Angeles"
 
 includes:
   ansible: ./.taskfiles/ansible.yaml
   blocky: ./.taskfiles/blocky.yaml
   docs: ./.taskfiles/docs.yaml
   gpg: ./.taskfiles/gpg.yaml
+  hr: ./.taskfiles/hr.yaml
   k3s: ./.taskfiles/k3s.yaml
   lint: ./.taskfiles/lint.yaml
   mkdocs: ./.taskfiles/mkdocs.yaml
