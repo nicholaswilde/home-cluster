@@ -25,3 +25,24 @@ tasks:
     preconditions:
       - "test -f {{.PROJECT_DIR}}/hack/blocky.sh"
     silent: true
+
+  wl:
+    desc: Add to the whitelist.txt
+    cmds:
+      - echo {{ .URL }} | tee -a {{.PROJECT_DIR}}/cluster/kube-system/blocky/whitelist.txt
+    deps:
+      - _check-url
+    silent: true
+
+  bl:
+    desc: Add to the blacklist.txt
+    cmds:
+      - echo {{ .URL }} | tee -a {{.PROJECT_DIR}}/cluster/kube-system/blocky/blacklist.txt
+    deps:
+      - _check-url
+    silent: true
+
+  _check-url:
+    cmds:
+      - test ! -z "{{ .URL }}" || (echo "URL is not set"; exit 1;)
+    silent: true
