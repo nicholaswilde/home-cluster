@@ -19,6 +19,9 @@ spec:
     image:
       repository: oznu/homebridge
       tag: 4.0.0
+    config:
+      plugins:
+        - homebridge-presence-switch-msgraph
     service:
       clusterIP: 192.168.1.202
       loadBalancerIP: 192.168.1.202
