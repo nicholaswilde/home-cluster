@@ -19,3 +19,19 @@ tasks:
     cmds:
       - kubectl taint nodes {{ .NAME }} CriticalAddonsOnly=true:NoExecute-
     silent: true
+
+  reclaim:
+    desc: Change the reclaim policy on a pv
+    cmds:
+      - >-
+        kubectl patch pv {{ .NAME }}
+        -p '{"spec":{"persistentVolumeReclaimPolicy":"{{.POLICY}}"}}'
+    vars:
+      POLICY: Retain
+    deps:
+      - _check-name
+
+  _check-name:
+    cmds:
+      - test ! -z "{{ .NAME }}" || (echo "NAME is not set"; exit 1;)
+    silent: true
