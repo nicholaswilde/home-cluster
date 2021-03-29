@@ -1,4 +1,15 @@
-# Home Cluster
+<!-- markdownlint-disable first-line-heading line-length -->
+<img src="https://camo.githubusercontent.com/bd0df216af51c1525f14e62155608e448562cb4033554e001a0ac2009e545aec/68747470733a2f2f726173706265726e657465732e6769746875622e696f2f696d672f6c6f676f2e737667" align="left" width="144px" height="144px"/>
+
+<!-- markdownlint-disable no-trailing-punctuation -->
+### My home Kubernetes cluster :sailboat:
+
+<!-- markdownlint-disable no-trailing-punctuation -->
+_... managed by Flux and serviced with RenovateBot_ :robot:
+
+<br/>
+<br/>
+<br/>
 
 [![k3s](https://img.shields.io/badge/k3s-v1.19.8-orange?style=for-the-badge&logo=kubernetes)](https://k3s.io/)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=for-the-badge)](https://github.com/pre-commit/pre-commit)
