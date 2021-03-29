@@ -22,4 +22,3 @@ spec:
     storageClass:
       defaultClass: true
       name: managed-nfs-storage
-      reclaimPolicy: Retain
