@@ -28,7 +28,7 @@ spec:
       externalTrafficPolicy: Local
     servers:
       - zones:
-          - zone: devbu.io.
+          - zone: wilde.io.
             scheme: dns://
             # use_tcp: true
         port: 53
