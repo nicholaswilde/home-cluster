@@ -18,7 +18,6 @@ spec:
     config: |
       port: 53
       httpPort: 4000
-      logLevel: info
       upstream:
         externalResolvers:
           - tcp-tls:4838af.dns1.nextdns.io:853
