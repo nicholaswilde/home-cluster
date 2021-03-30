@@ -13,8 +13,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# https://github.com/fluxcd/flux2-kustomize-helm-example/blob/5297fbc82b33fc7edbecbbd67ff2d6cdbe604e39/scripts/validate.sh
 
 set -o errexit
 
@@ -22,12 +20,14 @@ set -o errexit
 kustomize_flags="--enable_kyaml=false --allow_id_changes=false --load_restrictor=LoadRestrictionsNone"
 kustomize_config="kustomization.yaml"
 
-find . -type f -name '*.yaml' -print0 | while IFS= read -r -d $'\0' file; do
+find . -type f -name '*.yaml' -print0 | while IFS= read -r -d $'\0' file;
+  do
     echo "INFO - Validating $file"
     yq e 'true' "$file" > /dev/null
 done
 
-find . -type f -name $kustomize_config -print0 | while IFS= read -r -d $'\0' file; do
+find . -type f -name $kustomize_config -print0 | while IFS= read -r -d $'\0' file;
+  do
     echo "INFO - Validating kustomization ${file/%$kustomize_config}"
     kustomize build "${file/%$kustomize_config}" "$kustomize_flags" | kubeval --ignore-missing-schemas
     if [[ ${PIPESTATUS[0]} != 0 ]]; then
