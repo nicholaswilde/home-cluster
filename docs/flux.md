@@ -47,20 +47,25 @@ flux bootstrap github \
   ├── flux-system
   │   ├── gotk-components.yaml
   │   ├── gotk-sync.yaml
+  │   ├── gotk-patches.yaml
   │   ├── helm
   │   └── kustomization.yaml
   ├── namespace1
-  │   ├── chart1.yaml
+  │   ├── helm-release.yaml
   │   └── namespace1.yaml
   ├── namespace2
   │   ├── namespace2.yaml
   │   ├── chart2
-  │   │   └── chart2.yaml
+  │   │   └── helm-release.yaml
   │   └── chart3
-  │       └── chart3.yaml
+  │       └── helm-release.yaml
   └── sources
       └── some-repo-charts.yaml
 ```
+
+!!! Hint
+    The above chart files use the `helm-release.yaml` file name so that
+    Renovate can correctly find the chart version.
 
 ## Namespaces
 
@@ -100,15 +105,17 @@ namespace.
 The source file is typically added to the `./cluster/sources` directory.
 
 ```shell
-flux create source helm managed-nfs-storage \
+flux create source helm repo-name-charts \
     --url https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/ \
-    --export | tee managed-nfs-storage.yaml
+    --export | tee repo-name-charts.yaml
 ```
 
 All below commands are performed inside the `./cluster/<namespace name>`
 directory.
 
 ### values.yaml
+
+#### Chart Specific
 
 ```yaml
 ---
@@ -118,14 +125,9 @@ nfs:
 storageClass:
   defaultClass: false
   name: managed-nfs-storage
-resources:
-  limits:
-    cpu: '1'
-    memory: '512Mi'
-  requests:
-    cpu: '500m'
-    memory: '256Mi'
 ```
+
+#### Resources
 
 ```yaml
 resources:
@@ -144,14 +146,14 @@ The latter part of `source` parameter needs to match the name of the
 
 ```shell
 flux create helmrelease \
-    managed-nfs-storage \
-    --source HelmRepository/managed-nfs-storage \
+    chart-name \
+    --source HelmRepository/repo-name-charts \
     --values values.yaml \
-    --chart nfs-subdir-external-provisioner \
-    --target-namespace managed-nfs-storage \
-    --interval 30s \
+    --chart chart-name \
+    --chart-version 1.0.0 \
+    --target-namespace namespace-name \
     --export \
-    | tee -a managed-nfs-storage.yaml
+    | tee helm-release.yaml
 ```
 
 Commit the yaml files and watch your cluster update.
@@ -162,3 +164,7 @@ watch flux get kustomizations
 watch flux get helmreleases
 watch flux get sources all -A
 ```
+
+## Task
+
+WIP
