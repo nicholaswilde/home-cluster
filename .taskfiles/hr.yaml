@@ -46,7 +46,8 @@ tasks:
     cmds:
       - test ! -z "{{ .URL }}" || (echo "The URL could not be set"; exit 1;)
       - |
-        sed -i 's@chart: test@# renovate: registryUrl={{ .URL }}\n      chart: test@' \
+        sed -i 's@chart: test@# renovate: registryUrl={{ .URL }}\n      \
+        chart: test@' \
         {{ .CLUSTER_DIR }}/{{ .NS }}/{{ .NAME }}/helm-release.yaml
     vars:
       URL:
