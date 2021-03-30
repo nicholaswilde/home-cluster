@@ -23,6 +23,8 @@ nav:
   - Mozilla SOPS: sops.md
   - Namespaces:
       - dev: namespaces/dev.md
+      - home: namespaces/home.md
+      - media: namespaces/media.md
       - system-upgrade: namespaces/system-upgrade.md
       - test: namespaces/test.md
   - Restoration: restoration.md

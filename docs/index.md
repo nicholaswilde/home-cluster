@@ -21,7 +21,7 @@ _... managed by Flux and serviced with RenovateBot_ :robot:
 
 My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 
-## :information_source:&nbsp; Background
+## :sunrise_over_mountains:&nbsp; Background
 
 My cluster computing journey started last year when [Jeff Geerling] released
 his [Turing Pi Cluster YouTube series][1] :1234:&nbsp;. Now, I've always been
