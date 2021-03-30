@@ -31,3 +31,10 @@ repos:
       - id: shellcheck
         name: Run shellcheck
         description: Performs linting on bash scripts
+  - repo: local
+    hooks:
+      - id: check-sops-secrets
+        name: Check for unencrypted SOPS secrets
+        entry: ./hack/check-sops-secrets-hook.sh
+        language: script
+        files: \.(ya?ml)$
