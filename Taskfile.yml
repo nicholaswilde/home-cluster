@@ -27,6 +27,7 @@ tasks:
       - task: lint:yamllint
       - task: lint:markdownlint
       - task: lint:linkcheck
+      - task: lint:shellcheck
 
   default:
     cmds:
