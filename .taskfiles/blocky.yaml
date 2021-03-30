@@ -4,40 +4,45 @@ version: '3'
 tasks:
   enable:
     desc: Enable adblocking in blocky
+    dir: "{{.PROJECT_DIR}}/hack"
     cmds:
-      - "{{.PROJECT_DIR}}/hack/blocky.sh enable"
+      - "./blocky.sh enable"
     preconditions:
-      - "test -f {{.PROJECT_DIR}}/hack/blocky.sh"
+      - "test -f blocky.sh"
     silent: true
 
   disable:
     desc: Disable adblocking in blocky
+    dir: "{{.PROJECT_DIR}}/hack"
     cmds:
-      - "{{.PROJECT_DIR}}/hack/blocky.sh disable"
+      - "./blocky.sh disable"
     preconditions:
-      - "test -f {{.PROJECT_DIR}}/hack/blocky.sh"
+      - "test -f blocky.sh"
     silent: true
 
   status:
     desc: Get status of adblocking in blocky
+    dir: "{{.PROJECT_DIR}}/hack"
     cmds:
-      - "{{.PROJECT_DIR}}/hack/blocky.sh status"
+      - "./blocky.sh status"
     preconditions:
-      - "test -f {{.PROJECT_DIR}}/hack/blocky.sh"
+      - "test -f blocky.sh"
     silent: true
 
   wl:
     desc: Add to the whitelist.txt
+    dir: "{{.PROJECT_DIR}}/cluster/kube-system/blocky"
     cmds:
-      - echo {{ .URL }} | tee -a {{.PROJECT_DIR}}/cluster/kube-system/blocky/whitelist.txt
+      - echo {{ .URL }} | tee -a whitelist.txt
     deps:
       - _check-url
     silent: true
 
   bl:
     desc: Add to the blacklist.txt
+    dir: "{{.PROJECT_DIR}}/cluster/kube-system/blocky"
     cmds:
-      - echo {{ .URL }} | tee -a {{.PROJECT_DIR}}/cluster/kube-system/blocky/blacklist.txt
+      - echo {{ .URL }} | tee -a blacklist.txt
     deps:
       - _check-url
     silent: true
