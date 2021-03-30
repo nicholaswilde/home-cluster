@@ -9,10 +9,3 @@ spec:
     provider: sops
     secretRef:
       name: sops-gpg
-  interval: 10m0s
-  path: ./cluster
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  validation: client
