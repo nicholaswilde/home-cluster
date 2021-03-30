@@ -19,6 +19,12 @@ Specifications for my home cluster.
 - :briefcase:&nbsp; [MITXPC MX500-USB3 Compact Mini-ITX Case][case] - 1X
 - :ice_cube:&nbsp; [Noctua NF-A4x10 Fans][fans] - 2X
 
+## :globe_with_meridians:&nbsp; Networking
+
+I don't use any fancy networking in my cluster, yet. This is definitely
+a topic that I want tackle at a later date. Currently, I'm using
+[Traefik] with [nip.io] host paths to serve my applications.
+
 ## :robot:&nbsp; Automation
 
 I try to use automaiton as much as possible when developing my projects
@@ -41,3 +47,5 @@ Actions.
 [RPi4]: https://www.raspberrypi.org/products/raspberry-pi-4-model-b/
 [case]: https://www.amazon.com/gp/product/B0728DX73X/
 [fans]: https://www.amazon.com/gp/product/B00NEMGCIA/
+[Traefik]: https://traefik.io/
+[nip.io]: https://nip.io/
