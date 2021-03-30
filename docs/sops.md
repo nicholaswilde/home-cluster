@@ -1,6 +1,6 @@
 # Mozilla SOPS
 
-I'm currently using [Mozilla SOPS][sop]:key:&nbsp; to manage secrets on my
+I'm currently using [Mozilla SOPS][sop] :key:&nbsp; to manage secrets on my
 cluster.
 
 ## :passenger_ship:&nbsp; Deployment
@@ -58,8 +58,29 @@ Output decoded secrets without external tools. Used when testing the
 kubectl get secret my-secret -o go-template='{{range $k,$v := .data}}{{"### "}}{{$k}}{{"\n"}}{{$v|base64decode}}{{"\n\n"}}{{end}}'
 ```
 
+## :key:&nbsp; Import the Public GPG Key Using Task
+
+Task may be used to import the public key.
+
+```shell
+task gpg:import
+```
+
+## Check for Unencrypted Secrets Using pre-commit
+
+I use a custom `pre-commit` hook that runs [this script] to check that
+resources of kind secret are encrypted using `SOPS`.
+
+```shell
+pre-commit run check-sops-secrets
+```
+
+!!! Note
+    The scipt does not check if the secret is out of date!
+
 [asym]: https://en.wikipedia.org/wiki/Public-key_cryptography
 [sop]: https://github.com/mozilla/sops
 [config]: https://toolkit.fluxcd.io/guides/mozilla-sops/#configure-in-cluster-secrets-decryption
 [yt]: https://www.youtube.com/watch?v=8pbdXAd-F44
 [flux]: https://toolkit.fluxcd.io/guides/mozilla-sops/
+[this script]: https://github.com/nicholaswilde/home-cluster/blob/main/hack/check-sops-secrets-hook.sh
