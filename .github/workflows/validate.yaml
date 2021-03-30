@@ -1,0 +1,19 @@
+---
+name: validate
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  manifests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup tools
+        uses: ./.github/actions/tools
+      - name: Validate manifests
+        run: ./hack/validate.sh
