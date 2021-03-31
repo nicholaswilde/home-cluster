@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - system-upgrade-controller.yaml
-  - k3s-plans.yaml
+  #- k3s-plans.yaml
