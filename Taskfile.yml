@@ -9,7 +9,7 @@ vars:
   TZ: "America/Los_Angeles"
 
 includes:
-  #ansible: ./.taskfiles/ansible.yaml
+  ansible: ./.taskfiles/ansible.yaml
   blocky: ./.taskfiles/blocky.yaml
   docs: ./.taskfiles/docs.yaml
   gpg: ./.taskfiles/gpg.yaml
@@ -21,6 +21,7 @@ includes:
   values: ./.taskfiles/values.yaml
 
 tasks:
+
   lint:
     desc: Lint the files
     cmds:

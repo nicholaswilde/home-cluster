@@ -7,8 +7,8 @@ env:
 vars:
   ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
   ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
-  ANSIBLE_GROUPS: "control-nodes:generic-nodes"
-  ANSIBLE_INVENTORY: "rpis"
+  ANSIBLE_GROUPS: "main:node"
+  ANSIBLE_INVENTORY: "cluster"
 
 tasks:
 
@@ -23,11 +23,9 @@ tasks:
 
   list:
     desc: List all the k3s nodes
+    dir: "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}"
     cmds:
-      - >-
-        ansible "{{.ANSIBLE_GROUPS}}"
-        -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
-        --list-hosts
+      - ansible "{{.ANSIBLE_GROUPS}}" -i "./hosts.yaml" --list-hosts
     silent: true
 
   upgrade:
@@ -36,7 +34,7 @@ tasks:
       - >-
         ansible-playbook
         -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
-        "{{.ANSIBLE_PLAYBOOK_DIR}}/rpios/upgrade.yaml"
+        "{{.ANSIBLE_PLAYBOOK_DIR}}/upgrade.yaml"
         -l {{ .ANSIBLE_GROUPS }}
     silent: true
 
@@ -54,6 +52,33 @@ tasks:
     cmds:
       - "ansible-galaxy install -r {{.ANSIBLE_DIR}}/requirements.yaml"
     silent: true
+
+  prepare:
+    desc: Prepare the cluster for K3s installation
+    cmds:
+      - >-
+        ansible-playbook
+        -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
+        "{{.ANSIBLE_PLAYBOOK_DIR}}/prepare.yaml"
+    slient: true
+
+  install:
+    desc: Install K3s
+    cmds:
+      - >-
+        ansible-playbook
+        -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
+        "{{.ANSIBLE_PLAYBOOK_DIR}}/install.yaml"
+    slient: true
+
+  nuke:
+    desc: Nuke K3s
+    cmds:
+      - >-
+        ansible-playbook
+        -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
+        "{{.ANSIBLE_PLAYBOOK_DIR}}/nuke.yaml"
+    slient: true
 
   vars:
     desc: Print vars
