@@ -1,21 +1,21 @@
 ---
-- name: nuke | disable services
+- name: disable services
   systemd:
     name: "{{ item }}"
     state: stopped
-    enabled: no
+    enabled: false
   failed_when: false
   with_items:
     - k3s
     - k3s-node
 
-- name: nuke | kill containerd-shim-runc"
+- name: kill containerd-shim-runc"
   register: pkill_containerd_shim_runc
   command: pkill -9 -f "k3s/data/[^/]+/bin/containerd-shim-runc"
   changed_when: "pkill_containerd_shim_runc.rc == 0"
   failed_when: false
 
-- name: nuke | umount k3s filesystems
+- name: umount k3s filesystems
   include_tasks: umount_with_children.yaml
   with_items:
     - /run/k3s
@@ -25,7 +25,7 @@
   loop_control:
     loop_var: mounted_fs
 
-- name: nuke | remove service files, binaries, and data
+- name: remove service files, binaries, and data
   file:
     name: "{{ item }}"
     state: absent
@@ -37,6 +37,6 @@
     - /var/lib/kubelet
     - /var/lib/rancher/k3s
 
-- name: nuke | reload daemon
+- name: reload daemon
   systemd:
-    daemon_reload: yes
+    daemon_reload: true

@@ -1,16 +1,20 @@
 ---
 - hosts: cluster
-  gather_facts: yes
-  become: yes
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - name: Pausing for 5 seconds...
+      pause:
+        seconds: 5
   roles:
     - role: install/cluster
 
-- hosts: master
-  become: yes
+- hosts: main
+  become: true
   roles:
     - role: install/main
 
 - hosts: node
-  become: yes
+  become: true
   roles:
     - role: install/node

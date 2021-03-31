@@ -1,0 +1,8 @@
+---
+packages:
+  apt_install:
+    - unattended-upgrades
+
+  apt_remove:
+    - apparmor
+    - ntfs-3g

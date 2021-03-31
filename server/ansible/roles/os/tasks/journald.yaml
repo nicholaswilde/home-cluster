@@ -1,0 +1,21 @@
+---
+- name: journald | copy 20system-max-use config
+  ansible.builtin.blockinfile:
+    path: /etc/systemd/journald.conf.d/20system-max-use
+    mode: 0644
+    create: true
+    block: |
+      SystemMaxUse=200M;
+
+- name: journald | start systemd service
+  ansible.builtin.systemd:
+    name: systemd-journald
+    enabled: true
+    state: started
+
+- name: journald | restart systemd service
+  ansible.builtin.service:
+    name: systemd-journald.service
+    daemon_reload: true
+    enabled: true
+    state: restarted

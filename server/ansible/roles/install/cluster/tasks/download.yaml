@@ -1,5 +1,5 @@
 ---
-- name: install | download | binary
+- name: download | binary
   get_url:
     # yamllint disable-line rule:line-length
     url: https://github.com/k3s-io/k3s/releases/download/{{ k3s_version }}/k3s-arm64

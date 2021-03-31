@@ -1,0 +1,24 @@
+---
+- include: locale.yaml
+  tags: ["locale"]
+
+- include: packages.yaml
+  tags: ["packages"]
+
+- include: filesystem.yaml
+  tags: ["filesystem"]
+
+- include: unattended-upgrades.yaml
+  tags: ["unattended-upgrades"]
+
+- include: journald.yaml
+  tags: ["journald"]
+
+- include: user.yaml
+  tags: ["user"]
+
+- include: rsyslog.yml
+  when:
+    - rsyslog.enabled is defined
+    - rsyslog.enabled
+  tags: ["rsyslog"]
