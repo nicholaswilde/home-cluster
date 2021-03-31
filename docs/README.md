@@ -1,5 +1,5 @@
 <!-- markdownlint-disable first-line-heading line-length -->
-<img src="./docs/assets/images/logo.svg" align="left" width="144px" height="144px"/>
+<img src="./assets/images/logo.svg" align="left" width="144px" height="144px"/>
 
 <!-- markdownlint-disable no-trailing-punctuation -->
 ### My home Kubernetes cluster :sailboat:
