@@ -1,0 +1,16 @@
+---
+- hosts: cluster
+  gather_facts: yes
+  become: yes
+  roles:
+    - role: install/cluster
+
+- hosts: master
+  become: yes
+  roles:
+    - role: install/main
+
+- hosts: node
+  become: yes
+  roles:
+    - role: install/node

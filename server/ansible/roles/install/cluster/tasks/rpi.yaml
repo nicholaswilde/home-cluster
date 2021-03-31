@@ -1,0 +1,67 @@
+---
+- name: install | rpi | test for raspberry pi /proc/cpuinfo
+  command: grep -E "Raspberry Pi|BCM2708|BCM2709|BCM2835|BCM2836" /proc/cpuinfo
+  register: grep_cpuinfo_raspberrypi
+  failed_when: false
+  changed_when: false
+
+- name: install | rpi | test for raspberry pi /proc/device-tree/model
+  command: grep -E "Raspberry Pi" /proc/device-tree/model
+  register: grep_device_tree_model_raspberrypi
+  failed_when: false
+  changed_when: false
+
+- name: install | rpi | set raspberry_pi fact to true
+  set_fact:
+    raspberry_pi: true
+  when: >
+    grep_cpuinfo_raspberrypi.rc == 0 or
+    grep_device_tree_model_raspberrypi.rc == 0
+
+- name: install | rpi | set detected_distribution to Raspbian
+  set_fact:
+    detected_distribution: Raspbian
+  when: >
+    raspberry_pi|default(false) and
+    ( ansible_facts.lsb.id|default("") == "Raspbian" or
+      ansible_facts.lsb.description|default("") is match("[Rr]aspbian.*") )
+
+- name: install | rpi | set detected_distribution to Raspbian
+  set_fact:
+    detected_distribution: Raspbian
+  when:
+    - ansible_facts.architecture is search("aarch64")
+    - raspberry_pi|default(false)
+    - ansible_facts.lsb.description|default("") is match("Debian.*buster")
+
+- name: install | rpi | set detected_distribution_major_version
+  set_fact:
+    detected_distribution_major_version: "{{ansible_facts.lsb.major_release}}"
+  when:
+    - detected_distribution | default("") == "Raspbian"
+
+- name: install | rpi | activating cgroup support
+  lineinfile:
+    path: /boot/cmdline.txt
+    # yamllint disable-line rule:line-length
+    regexp: '^((?!.*\bcgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory\b).*)$'
+    line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
+    backrefs: true
+  notify: reboot
+
+- name: install | rpi | flush iptables before changing to iptables-legacy
+  iptables:
+    flush: true
+  changed_when: false   # iptables flush always returns changed
+
+- name: install | rpi | change to iptables-legacy
+  alternatives:
+    path: /usr/sbin/iptables-legacy
+    name: iptables
+  register: ip4_legacy
+
+- name: install | rpi | change to ip6tables-legacy
+  alternatives:
+    path: /usr/sbin/ip6tables-legacy
+    name: ip6tables
+  register: ip6_legacy
