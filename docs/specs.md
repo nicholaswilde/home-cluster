@@ -47,6 +47,7 @@ Actions.
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/)
 - [krew](https://krew.sigs.k8s.io/)
 - [change-ns](https://github.com/juanvallejo/kubectl-ns)
+- [Kubernetes NameSpace Killer (knsk)][knsk]
 
 [RPiOS]: https://downloads.raspberrypi.org/raspios_arm64/images/
 [CM3+]: https://www.raspberrypi.org/products/compute-module-3-plus/
@@ -61,3 +62,4 @@ Actions.
 [pre-commit]: https://pre-commit.com/
 [Task]: https://github.com/go-task/task
 [NFS]: https://en.wikipedia.org/wiki/Network_File_System
+[knsk]: https://github.com/thyarles/knsk
