@@ -39,7 +39,7 @@ spec:
         cpu: 100m
         memory: 128Mi
     probes:
-    liveness:
-      enabled: false
-    readiness:
-      enabled: false
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
