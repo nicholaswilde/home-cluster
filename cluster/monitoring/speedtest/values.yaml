@@ -1,0 +1,11 @@
+---
+image:
+  repository: atribe/speedtest-for-influxdb-and-grafana
+  tag: latest
+resources:
+  limits:
+    cpu: '200m'
+    memory: '256Mi'
+  requests:
+    cpu: '100m'
+    memory: '128Mi'
