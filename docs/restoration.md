@@ -1,6 +1,58 @@
 # Restoration
 
-How to restore a cluster using flux.
+How to restore a cluster using flux after installing an operating system
+on all cluster nodes.
+
+The first step is to get a base K3s installation installed on your cluster.
+This can be done be using the [Ansible Install] playbook.
+
+## TL;DR
+
+```shell
+task k3s:bootstrap
+```
+
+## `flux-system` Namespace
+
+The next thing to do is create a `flux-system` namespace to install the
+`sops-gpg` secret so that `flux` can properly unencrypt any secrets in
+the repository.
+
+```shell
+kubectl create namespace flux-system
+```
+
+## Mozilla SOPS
+
+Once the `flux-system` namespace is created, import the `private` gpg
+key back into the cluster using whichever method you prefer.
+
+### Restore Private GPG Key using pass
+
+```shell
+pass gpg/home-cluster-private |
+kubectl create secret generic sops-gpg \
+--namespace=flux-system \
+--from-file=sops.asc=/dev/stdin
+```
+
+!!! Note
+    Where `gpg/home-cluster-private` is the location of the home-cluster
+    private key in `pass`.
+
+### Restore Private GPG Key from the `gpg` keyring
+
+```shell
+gpg --export-secret-keys --armor "${KEY_FP}" |
+kubectl create secret generic sops-gpg \
+--namespace=flux-system \
+--from-file=sops.asc=/dev/stdin
+```
+
+!!! Note
+    Where `"${KEY_FP}"` is the fingerprint of the `home-cluster` gpg key.
+
+### Restore Using the Flux CLI
 
 Run the bootstrap command:
 
@@ -13,7 +65,7 @@ flux bootstrap github \
   --personal
 ```
 
-The above command will clone the repository, it will update the components
+The above command will clone the repository, update the components
 manifest in <path>/flux-system/gotk-components.yaml and it will push the
 changes to the remote branch.
 
@@ -33,51 +85,15 @@ flux check
     If you are having trouble restoring you cluster, try deleting the
     [deploy key][1] from your cluster repo.
 
-## Mozilla SOPS
+## Pull the Repo
 
-### Public GPG Key
-
-The public GPG key is stored in the cluster and can be imported after
-cloning the repo.
-
-Using `Task` from the repo root directory.
+After flux syncs with the repo, you'll need to perform a `git pull` in order to
+update your local repo.
 
 ```shell
-task gpg:import
+git pull origin main
 ```
 
-Using `gpg` from the repo root directory.
-
-```shell
-gpg --import ./cluster/.sops.pub.asc
-```
-
-### Private GPG Key
-
-Restore the `secret key` from [pass].
-
-```shell
-pass gpg/home-cluster-private |
-kubectl create secret generic sops-gpg \
---namespace=flux-system \
---from-file=sops.asc=/dev/stdin
-```
-
-!!! Note
-    Where `gpg/home-cluster-private` is the location of the home-cluster
-    private key in `pass`.
-
-Restore the `secret key` from `gpg` keyring.
-
-```shell
-gpg --export-secret-keys --armor "${KEY_FP}" |
-kubectl create secret generic sops-gpg \
---namespace=flux-system \
---from-file=sops.asc=/dev/stdin
-```
-
-!!! Note
-    Where `"${KEY_FP}"` is the fingerprint of the `home-cluster` gpg key.
-
+[Ansible Install]: ./ansible.md#install
 [1]: https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys
 [pass]: https://www.passwordstore.org/
