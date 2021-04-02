@@ -1,4 +1,7 @@
 ---
+- include: host.yaml
+  tags: ["host"]
+
 - include: locale.yaml
   tags: ["locale"]
 

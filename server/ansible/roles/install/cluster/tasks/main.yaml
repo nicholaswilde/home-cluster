@@ -1,9 +1,0 @@
----
-- include: prereqs.yaml
-  tags: ["prereqs"]
-
-- include: download.yaml
-  tags: ["download"]
-
-- include: rpi.yaml
-  tags: ["rpi"]

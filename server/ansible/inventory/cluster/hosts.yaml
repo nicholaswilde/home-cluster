@@ -1,0 +1,33 @@
+---
+all:
+  children:
+    rpis:
+      hosts:
+        pi-w:
+          ansible_host: 192.168.1.29
+        pi-02:
+          ansible_host: 192.168.1.250
+        pi-04:
+          ansible_host: 192.168.1.192
+    main:
+      hosts:
+        main-01:
+          ansible_host: 192.168.1.201
+        main-02:
+          ansible_host: 192.168.1.202
+        main-03:
+          ansible_host: 192.168.1.203
+    node:
+      hosts:
+        worker-04:
+          ansible_host: 192.168.1.204
+        worker-05:
+          ansible_host: 192.168.1.205
+        worker-06:
+          ansible_host: 192.168.1.206
+        worker-07:
+          ansible_host: 192.168.1.207
+    cluster:
+      children:
+        main:
+        node:

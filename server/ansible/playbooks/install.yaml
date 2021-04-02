@@ -7,14 +7,5 @@
       pause:
         seconds: 5
   roles:
-    - role: install/cluster
-
-- hosts: main
-  become: true
-  roles:
-    - role: install/main
-
-- hosts: node
-  become: true
-  roles:
-    - role: install/node
+    - xanmanning.k3s
+    - k3s

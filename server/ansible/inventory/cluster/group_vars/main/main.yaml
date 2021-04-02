@@ -1,0 +1,10 @@
+---
+k3s_control_node: true
+
+# k3s settings for all control-plane nodes
+k3s_server:
+  disable-network-policy: true
+  disable-cloud-controller: true
+  write-kubeconfig-mode: "644"
+  cluster-cidr: "10.69.0.0/16"
+  service-cidr: "10.96.0.0/16"
