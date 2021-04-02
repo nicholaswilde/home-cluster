@@ -2,7 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - namespace.yaml
-  - system-upgrade-controller.yaml
-patchesStrategicMerge:
-  - k3s-plans.yaml
+  - 00-namespace.yaml
+  - 01-system-upgrade-controller.yaml
+  - 02-k3s-plans.yaml
