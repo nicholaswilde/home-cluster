@@ -11,6 +11,12 @@ vars:
   ANSIBLE_INVENTORY: "cluster"
 
 tasks:
+  edit:
+    desc: Edit vars
+    cmds:
+      # yamllint disable-line rule:line-length
+      - $EDITOR {{ .ANSIBLE_INVENTORY_DIR }}/{{ .ANSIBLE_INVENTORY }}/group_vars/all.yaml
+    silent: true
 
   ping:
     desc: Ping all the k3s nodes
@@ -44,7 +50,7 @@ tasks:
       - >-
         ansible "{{.ANSIBLE_GROUPS}}"
         -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
-        -m reboot
+        -b -m reboot
     silent: true
 
   requirements:

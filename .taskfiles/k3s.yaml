@@ -1,9 +1,51 @@
 ---
+# yamllint disable rule:line-length
 version: '3'
 
 tasks:
-  bootstrap:
-    desc: Create secret from pass and bootstrap flux
+  label:
+    desc: Label the worker nodes
+    cmds:
+      - kubectl label node worker-02 node-role.kubernetes.io/worker=worker
+      - kubectl label node worker-03 node-role.kubernetes.io/worker=worker
+      - kubectl label node worker-04 node-role.kubernetes.io/worker=worker
+      - kubectl label node worker-05 node-role.kubernetes.io/worker=worker
+      - kubectl label node worker-06 node-role.kubernetes.io/worker=worker
+      - kubectl label node worker-07 node-role.kubernetes.io/worker=worker
+      - kubectl get nodes
+    silent: true
+
+  nginx:
+    desc: Deploy nginx
+    cmds:
+      - |
+        kubectl apply -f \
+        https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-{{ .VERSION }}/deploy/static/provider/cloud/deploy.yaml
+    vars:
+      VERSION: "v0.44.0"
+    silent: true
+
+  metallb:
+    desc: Deploy metallb
+    cmds:
+      - |
+        kubectl apply -f \
+        https://raw.githubusercontent.com/metallb/metallb/{{ .VERSION }}/manifests/namespace.yaml
+      - |
+        kubectl apply -f \
+        https://raw.githubusercontent.com/metallb/metallb/{{ .VERSION }}/manifests/metallb.yaml
+      - |
+        kubectl create secret generic -n metallb-system memberlist \
+        --from-literal=secretkey="$(openssl rand -base64 128)"
+      - |
+        kubectl apply -f \
+        {{ .CLUSTER_DIR }}/kube-system/metallb/configmap.yaml
+    vars:
+      VERSION: "v0.9.6"
+    silent: true
+
+  private:
+    desc: Import private secret
     cmds:
       - kubectl create ns flux-system
       - |
@@ -11,6 +53,13 @@ tasks:
           kubectl create secret generic sops-gpg \
           --namespace=flux-system \
           --from-file=sops.asc=/dev/stdin
+    vars:
+      SECRET: gpg/home-cluster-private
+    silent: true
+
+  flux:
+    desc: Create secret from pass and bootstrap flux
+    cmds:
       - |
         flux bootstrap github \
           --owner=$GITHUB_USER \
@@ -19,7 +68,6 @@ tasks:
           --path=./cluster \
           --personal
     vars:
-      SECRET: gpg/home-cluster-private
       REPO: home-cluster
     silent: true
 
