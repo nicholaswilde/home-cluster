@@ -21,6 +21,13 @@ includes:
   values: ./.taskfiles/values.yaml
 
 tasks:
+  bootstrap:
+    desc: Bootstrap the entire cluster
+    cmds:
+      - task: "ansible:prepare"
+      - task: "ansible:install"
+      - task: "k3s:private"
+      - task: "k3s:flux"
 
   lint:
     desc: Lint the files
