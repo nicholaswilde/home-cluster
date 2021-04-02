@@ -6,8 +6,6 @@ tasks:
   label:
     desc: Label the worker nodes
     cmds:
-      - kubectl label node worker-02 node-role.kubernetes.io/worker=worker
-      - kubectl label node worker-03 node-role.kubernetes.io/worker=worker
       - kubectl label node worker-04 node-role.kubernetes.io/worker=worker
       - kubectl label node worker-05 node-role.kubernetes.io/worker=worker
       - kubectl label node worker-06 node-role.kubernetes.io/worker=worker
