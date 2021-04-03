@@ -5,6 +5,8 @@
 - include: metallb.yaml
   run_once: true
   when:
+    - k3s_control_node is defined
+    - k3s_control_node
     - metallb.enabled is defined
     - metallb.enabled
   tags: ["metallb"]

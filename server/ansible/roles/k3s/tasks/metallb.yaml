@@ -1,80 +1,42 @@
 ---
-- name: metallb | install required dependencies
-  package:
-    name:
-      - python3-pip
-      - python3-setuptools
-      - build-essential
-      - python-dev
-    state: present
+- name: metallb | deploy namespace to k3s manifest directory
   become: true
-
-- name: metallb | wheel Python library is installed.
-  ansible.builtin.pip:
-    name: wheel
-    state: present
-  become: true
-
-- name: metallb | ruamel.yaml Python library is installed.
-  ansible.builtin.pip:
-    name: ruamel.yaml
-    state: present
-  become: true
-
-- name: metallb | openshift Python library is installed.
-  ansible.builtin.pip:
-    name: openshift
-    state: present
-  become: true
-
-- name: metallb | Create temporary directory
-  ansible.builtin.tempfile:
-    state: directory
-    suffix: temp
-  register: tempdir
-
-- name: metallb | download namespace.
   ansible.builtin.get_url:
     url: 'https://raw.githubusercontent.com/metallb/metallb/{{ metallb.version }}/manifests/namespace.yaml'
-    dest: "{{ tempdir.path }}/namespace.yaml"
-    mode: '0755'
+    dest: '{{ k3s_server_manifests_dir }}/metallb-namespace.yaml'
+    mode: 0644
 
-- name: metallb | download metallb
+- name: metallb | deploy resources to k3s manifest directory
+  become: true
   ansible.builtin.get_url:
     url: 'https://raw.githubusercontent.com/metallb/metallb/{{ metallb.version }}/manifests/metallb.yaml'
-    dest: "{{ tempdir.path }}/metallb.yaml"
-    mode: '0755'
+    dest: "{{ k3s_server_manifests_dir }}/metallb.yaml"
+    mode: 0644
 
-- name: metallb | create password
-  shell: openssl rand -base64 128
+- name: metallb | deploy configmap to k3s manifest directory
+  become: true
+  ansible.builtin.template:
+    src: "metallb-configmap.j2"
+    dest: "{{ k3s_server_manifests_dir }}/metallb-configmap.yaml"
+    mode: 0644
+
+- name: metallb | create secret
+  shell: openssl rand -base64 128 | tr -d '\n\r'
   register: command_output
 
 - set_fact:
     secret: "{{ command_output.stdout }}"
 
-- name: metallb | apply namespace
-  community.kubernetes.k8s:
-    state: present
-    src: "{{ tempdir.path }}/namespace.yaml"
-
-- name: metallb | apply metallb
-  community.kubernetes.k8s:
-    state: present
-    src: "{{ tempdir.path }}/metallb.yaml"
-
-- name: metallb | apply password
-  community.kubernetes.k8s:
-    state: present
-    definition:
+- name: metallb | deploy secret to k3s manifest directory
+  become: true
+  ansible.builtin.copy:
+    dest: "{{ k3s_server_manifests_dir }}/metallb-secret.yaml"
+    mode: 0644
+    content: |
       apiVersion: v1
       kind: Secret
       metadata:
         name: memberlist
         namespace: metallb-system
       data:
-        secretKey: '{{ secret }}'
-
-- name: metallb | apply configmap
-  community.kubernetes.k8s:
-    state: present
-    template: 'configmap.j2'
+        secretkey: '{{ command_output.stdout | trim }}'

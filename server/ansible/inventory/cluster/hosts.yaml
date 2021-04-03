@@ -11,10 +11,10 @@ all:
           ansible_host: 192.168.1.192
     main:
       hosts:
-        main-02:
-          ansible_host: 192.168.1.202
         main-01:
           ansible_host: 192.168.1.201
+        main-02:
+          ansible_host: 192.168.1.202
         main-03:
           ansible_host: 192.168.1.203
     node:
