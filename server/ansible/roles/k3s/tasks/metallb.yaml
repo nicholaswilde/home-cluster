@@ -1,6 +1,5 @@
 ---
 - name: metallb | install required dependencies
-  #run_once: true
   package:
     name:
       - python3-pip
@@ -11,66 +10,59 @@
   become: true
 
 - name: metallb | wheel Python library is installed.
-  #run_once: true
   ansible.builtin.pip:
     name: wheel
     state: present
   become: true
 
 - name: metallb | ruamel.yaml Python library is installed.
-  #run_once: true
   ansible.builtin.pip:
     name: ruamel.yaml
     state: present
   become: true
 
 - name: metallb | openshift Python library is installed.
-  #run_once: true
   ansible.builtin.pip:
     name: openshift
     state: present
   become: true
 
 - name: metallb | Create temporary directory
-  #run_once: true
   ansible.builtin.tempfile:
     state: directory
     suffix: temp
   register: tempdir
 
 - name: metallb | download namespace.
-  #run_once: true
   ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/namespace.yaml
+    url: 'https://raw.githubusercontent.com/metallb/metallb/{{ metallb.version }}/manifests/namespace.yaml'
     dest: "{{ tempdir.path }}/namespace.yaml"
     mode: '0755'
 
 - name: metallb | download metallb
-  #run_once: true
   ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+    url: 'https://raw.githubusercontent.com/metallb/metallb/{{ metallb.version }}/manifests/metallb.yaml'
     dest: "{{ tempdir.path }}/metallb.yaml"
     mode: '0755'
 
 - name: metallb | create password
-  #run_once: true
-  set_fact:
-    secret: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=128') }}"
+  shell: openssl rand -base64 128
+  register: command_output
+
+- set_fact:
+    secret: "{{ command_output.stdout }}"
 
 - name: metallb | apply namespace
-  #run_once: true
   community.kubernetes.k8s:
     state: present
     src: "{{ tempdir.path }}/namespace.yaml"
 
 - name: metallb | apply metallb
-  #run_once: true
   community.kubernetes.k8s:
     state: present
     src: "{{ tempdir.path }}/metallb.yaml"
 
 - name: metallb | apply password
-  #run_once: true
   community.kubernetes.k8s:
     state: present
     definition:
@@ -83,7 +75,6 @@
         secretKey: '{{ secret }}'
 
 - name: metallb | apply configmap
-  #run_once: true
   community.kubernetes.k8s:
     state: present
     template: 'configmap.j2'

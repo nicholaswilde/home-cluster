@@ -4,4 +4,7 @@
 
 - include: metallb.yaml
   run_once: true
+  when:
+    - metallb.enabled is defined
+    - metallb.enabled
   tags: ["metallb"]

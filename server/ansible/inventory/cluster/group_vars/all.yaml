@@ -29,3 +29,7 @@ rsyslog:
   enabled: false
   ip: 192.168.1.192
   port: 1514
+
+metallb:
+  enabled: true
+  version: "v0.9.6"
