@@ -20,6 +20,9 @@
 - include: user.yaml
   tags: ["user"]
 
+- include: rpi.yaml
+  tags: ["rpi"]
+
 - include: rsyslog.yml
   when:
     - rsyslog.enabled is defined

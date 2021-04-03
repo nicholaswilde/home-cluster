@@ -8,3 +8,7 @@ k3s_server:
   write-kubeconfig-mode: "644"
   cluster-cidr: "10.69.0.0/16"
   service-cidr: "10.96.0.0/16"
+  disable:
+    - servicelb
+    - metrics-server
+    - local-storage

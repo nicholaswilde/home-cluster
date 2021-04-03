@@ -6,6 +6,10 @@
     - name: Pausing for 5 seconds...
       pause:
         seconds: 5
+  environment:
+    K8S_AUTH_KUBECONFIG: "/etc/rancher/k3s/k3s.yaml"
   roles:
-    - xanmanning.k3s
-    - k3s
+    - role: xanmanning.k3s
+      tags: ["install"]
+    - role: k3s
+      tags: ["k3s"]

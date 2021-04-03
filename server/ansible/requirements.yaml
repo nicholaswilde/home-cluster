@@ -1,4 +1,7 @@
 ---
+collections:
+  - name: community.kubernetes
+    version: 1.2.1
 roles:
   - src: xanmanning.k3s
     version: v2.8.1
