@@ -15,6 +15,9 @@ spec:
   interval: 1m0s
   targetNamespace: kube-system
   values:
+    extraArgs:
+      - --enable-skip-login
+      - --enable-insecure-login
     hosts:
       - dashboard.192.168.1.202.nip.io
     image:
