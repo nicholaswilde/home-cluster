@@ -21,7 +21,7 @@ k3s_use_experimental: false
 
 # Enable debugging
 k3s_debug: false
-k3s_etcd_datastore: true
+#k3s_etcd_datastore: true
 
 # Enable rsyslog
 # ...requires a rsyslog server already set up
@@ -31,5 +31,5 @@ rsyslog:
   port: 1514
 
 metallb:
-  enabled: true
+  enabled: false
   version: "v0.9.6"

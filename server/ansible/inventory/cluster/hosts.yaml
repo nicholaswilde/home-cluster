@@ -13,12 +13,12 @@ all:
       hosts:
         main-01:
           ansible_host: 192.168.1.201
-        main-02:
-          ansible_host: 192.168.1.202
-        main-03:
-          ansible_host: 192.168.1.203
     node:
       hosts:
+        worker-02:
+          ansible_host: 192.168.1.202
+        worker-03:
+          ansible_host: 192.168.1.203
         worker-04:
           ansible_host: 192.168.1.204
         worker-05:
