@@ -1,0 +1,47 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: homebridge
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: homebridge
+      version: 1.0.4
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+  interval: 1m0s
+  targetNamespace: home
+  values:
+    image:
+      repository: oznu/homebridge
+      tag: 4.0.0
+    config:
+      plugins:
+        - homebridge-presence-switch-msgraph
+    service:
+      clusterIP: 192.168.1.205
+      loadBalancerIP: 192.168.1.205
+    ingress:
+      enabled: true
+      hosts:
+        - homebridge.192.168.1.205.nip.io
+    persistence:
+      enabled: true
+      storageClass: managed-nfs-storage
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    timezone: America/Los_Angeles
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
