@@ -18,6 +18,12 @@ tasks:
       - $EDITOR {{ .ANSIBLE_INVENTORY_DIR }}/{{ .ANSIBLE_INVENTORY }}/group_vars/all.yaml
     silent: true
 
+  reinstall:
+    desc: Reinstall K3s
+    cmds:
+      - task: nuke
+      - task: install
+
   ping:
     desc: Ping all the k3s nodes
     cmds:
