@@ -26,7 +26,7 @@ spec:
     ingress:
       enabled: true
       hosts:
-        - host: transmission.192.168.1.204.nip.io
+        - host: transmission.192.168.1.202.nip.io
           paths:
             - path: /
               pathType: Prefix
@@ -35,10 +35,11 @@ spec:
       config:
         accessMode: ReadWriteOnce
         emptyDir: false
-        enabled: false
+        enabled: true
         mountPath: /config
         size: 1Gi
         skipuninstall: false
+        storageClass: managed-nfs-storage
       downloads:
         accessMode: ReadWriteOnce
         emptyDir: false
@@ -50,10 +51,11 @@ spec:
       watch:
         accessMode: ReadWriteOnce
         emptyDir: false
-        enabled: false
+        enabled: true
         mountPath: /watch
         size: 1Gi
         skipuninstall: false
+        storageClass: managed-nfs-storage
     secret:
       pass: hypriot
       user: pirate
