@@ -1,5 +1,5 @@
 ---
-site_name: Home Cluster
+site_name: nicholaswilde | Home Cluster
 site_description: >-
   My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 site_author: Nicholas Wilde
