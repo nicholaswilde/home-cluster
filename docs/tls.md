@@ -29,6 +29,7 @@ Optionally, you can export the secret to a yaml file to save in the repo.
 kubectl create secret generic traefik-cert \
   --from-file=tls.crt \
   --from-file=tls.key \
+  --dry-run=client -n kubernetes-dashboard -o yaml \
   | tee traefik-cert-secret.yaml
 ```
 
