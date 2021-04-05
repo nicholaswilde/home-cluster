@@ -21,6 +21,7 @@ nav:
   - Flux: flux.md
   - Ansible: ansible.md
   - Mozilla SOPS: sops.md
+  - TLS: tls.md
   - Namespaces:
       - dev: namespaces/dev.md
       - home: namespaces/home.md
