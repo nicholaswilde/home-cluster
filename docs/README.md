@@ -27,7 +27,7 @@ My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 
 ## :book:&nbsp; Documentation
 
-Documentation can be found [here](http://nicholaswilde.github.io/home-cluster).
+Documentation can be found [here](http://nicholaswilde.io/home-cluster).
 
 ---
 
