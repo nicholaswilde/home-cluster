@@ -3,7 +3,7 @@ site_name: nicholaswilde | Home Cluster
 site_description: >-
   My home Kubernetes (k3s) cluster managed by GitOps (Flux2)
 site_author: Nicholas Wilde
-site_url: https://nicholaswilde.github.io/home-cluster
+site_url: https://nicholaswilde.io/home-cluster
 copyright: Copyright &copy; 2021 Nicholas Wilde
 dev_addr: '0.0.0.0:8000'
 
