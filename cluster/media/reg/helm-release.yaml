@@ -15,6 +15,9 @@ spec:
   interval: 1m0s
   targetNamespace: media
   values:
+    image:
+      registry: toolhippie/reg
+      tag: latest
     ingress:
       enabled: true
       hosts:
