@@ -26,14 +26,10 @@ spec:
     ingress:
       enabled: true
       hosts:
-        - host: transmission.192.168.1.202.nip.io
+        - host: transmission.192.168.1.201.nip.io
           paths:
             - path: /
               pathType: Prefix
-      tls:
-        - secretName: traefik-cert
-          hosts:
-            - transmission.192.168.1.202.nip.io
     persistence:
       config:
         accessMode: ReadWriteOnce
