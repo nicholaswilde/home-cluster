@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: reg
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: reg-server
+      sourceRef:
+        kind: HelmRepository
+        name: halkeye-charts
+      version: 0.1.0
+  interval: 1m0s
+  targetNamespace: media
+  values:
+    ingress:
+      enabled: true
+      hosts:
+        - host: r.192.168.1.201.nip.io
+          paths:
+            - path: /
+              pathType: Prefix
+    registry: registry.192.168.1.201.nip.io
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi

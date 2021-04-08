@@ -1,0 +1,15 @@
+ingress:
+  enabled: true
+  hosts:
+    - host: r.192.168.1.201.nip.io
+      paths:
+        - path: /
+          pathType: Prefix
+registry: registry.192.168.1.201.nip.io
+resources:
+  limits:
+    cpu: '200m'
+    memory: '256Mi'
+  requests:
+    cpu: '100m'
+    memory: '128Mi'
