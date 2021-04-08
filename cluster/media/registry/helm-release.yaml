@@ -18,7 +18,7 @@ spec:
     ingress:
       enabled: true
       hosts:
-        - registry.192.168.1.202.nip.io
+        - registry.192.168.1.201.nip.io
       path: /
     resources:
       limits:
