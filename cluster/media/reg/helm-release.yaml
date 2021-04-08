@@ -20,8 +20,7 @@ spec:
       hosts:
         - host: r.192.168.1.201.nip.io
           paths:
-            - path: /
-              pathType: Prefix
+            - /
     registry: registry.192.168.1.201.nip.io
     resources:
       limits:
