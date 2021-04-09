@@ -17,7 +17,7 @@ nav:
   - Home: index.md
   - Specs: specs.md
   - Operating System: operating-system.md
-  - K3S: k3s.md
+  - K3s: k3s.md
   - Flux: flux.md
   - Ansible: ansible.md
   - Mozilla SOPS: sops.md
