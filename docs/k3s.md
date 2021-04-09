@@ -1,4 +1,4 @@
-# K3S
+# K3s
 
 My cluster runs the [K3S] version of kubernetes due to its lightness in
 weight.
