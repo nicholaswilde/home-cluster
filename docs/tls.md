@@ -7,10 +7,20 @@ How to add TLS certificates to HTTPS ingress resources.
 The following command will generate `tls.crt` and `tls.key` files that can then
 be imported into Kubernetes.
 
+Interactive
+
 ```shell
 openssl req \
   -newkey rsa:2048 -nodes -keyout tls.key \
   -x509 -days 365 -out tls.crt
+```
+
+Non-interactive
+
+```shell
+openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+    -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com" \
+    -keyout www.example.com.key  -out www.example.com.cert
 ```
 
 ## Generate Secret Resource from Certificate
