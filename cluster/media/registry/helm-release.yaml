@@ -18,8 +18,10 @@ spec:
     ingress:
       enabled: true
       hosts:
-        - registry.192.168.1.201.nip.io
+        - registry.192.168.1.205.nip.io
       path: /
+      tls:
+        - secretName: traefik-cert
     resources:
       limits:
         cpu: 200m
