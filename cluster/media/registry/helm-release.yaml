@@ -18,11 +18,11 @@ spec:
   values:
     ingress:
       enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: nicholaswilde.io
       hosts:
-        - registry.192.168.1.205.nip.io
+        - r.nicholaswilde.io
       path: /
-      tls:
-        - secretName: traefik-cert
     resources:
       limits:
         cpu: 200m
