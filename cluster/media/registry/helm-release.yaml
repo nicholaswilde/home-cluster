@@ -7,6 +7,7 @@ metadata:
 spec:
   chart:
     spec:
+      # renovate: registryUrl=https://helm.twun.io
       chart: docker-registry
       sourceRef:
         kind: HelmRepository
