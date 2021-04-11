@@ -22,10 +22,6 @@ spec:
         external-dns.alpha.kubernetes.io/hostname: nicholaswilde.io
       hosts:
         - r.nicholaswilde.io
-      tls:
-        - secretName: traefik-cert
-          hosts:
-            - r.nicholaswilde.io
       path: /
     resources:
       limits:
