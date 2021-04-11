@@ -24,6 +24,8 @@ spec:
         - r.nicholaswilde.io
       tls:
         - secretName: traefik-cert
+          hosts:
+            - r.nicholaswilde.io
       path: /
     resources:
       limits:
