@@ -1,0 +1,15 @@
+---
+- name: swap | disable swap
+  command: dphys-swapfile swapoff
+
+- name: swap | set swappiness.
+  ansible.builtin.lineinfile:
+    path: /etc/dphys-swapfile
+    regexp: '^CONF_SWAPSIZE='
+    line: CONF_SWAPSIZE=1024
+
+- name: swap | initialize swap file
+  command: dphys-swapfile setup
+
+- name: swap | enable swap
+  command: dphys-swapfile swapon

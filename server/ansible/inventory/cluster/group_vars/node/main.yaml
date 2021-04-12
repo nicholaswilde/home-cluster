@@ -1,2 +1,5 @@
 ---
 k3s_control_node: false
+# k3s_agent:
+  # node-label:
+    # - "node-role.kubernetes.io/worker=worker"

@@ -28,3 +28,6 @@
     - rsyslog.enabled is defined
     - rsyslog.enabled
   tags: ["rsyslog"]
+
+- include: swap.yaml
+  tags: ["swap"]

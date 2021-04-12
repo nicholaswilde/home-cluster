@@ -6,15 +6,15 @@
     state: present
     sysctl_file: /etc/sysctl.d/98-kubernetes-fs.conf
 
-- name: filesystem | swap | disable at runtime
-  ansible.builtin.command: swapoff -a
-  when: ansible_swaptotal_mb > 0
+# - name: filesystem | swap | disable at runtime
+  # ansible.builtin.command: swapoff -a
+  # when: ansible_swaptotal_mb > 0
 
-- name: filesystem | swap| disable on boot
-  ansible.posix.mount:
-    name: "{{ item }}"
-    fstype: swap
-    state: absent
-  loop:
-    - swap
-    - none
+# - name: filesystem | swap | disable on boot
+  # ansible.posix.mount:
+    # name: "{{ item }}"
+    # fstype: swap
+    # state: absent
+  # loop:
+    # - swap
+    # - none
