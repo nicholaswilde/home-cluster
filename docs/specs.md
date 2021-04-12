@@ -29,7 +29,7 @@ and integrated into the cluster using [nfs-subdir-external-provisioner][nfs].
 
 I don't use any fancy networking in my cluster, yet. This is definitely
 a topic that I want tackle at a later date. Currently, I'm using
-[Traefik] with [nip.io] host paths to serve my applications.
+[Traefik] with [external-dns] to serve my applications.
 
 ## :robot:&nbsp; Automation
 
@@ -47,6 +47,7 @@ Actions.
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/)
 - [krew](https://krew.sigs.k8s.io/)
 - [change-ns](https://github.com/juanvallejo/kubectl-ns)
+- [cert-manager](https://github.com/jetstack/cert-manager)
 - [Kubernetes NameSpace Killer (knsk)][knsk]
 
 [RPiOS]: https://downloads.raspberrypi.org/raspios_arm64/images/
@@ -55,7 +56,7 @@ Actions.
 [case]: https://www.amazon.com/gp/product/B0728DX73X/
 [fans]: https://www.amazon.com/gp/product/B00NEMGCIA/
 [Traefik]: https://traefik.io/
-[nip.io]: https://nip.io/
+[external-dns]: https://github.com/kubernetes-sigs/external-dns
 [nfs]: https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
 [rook-ceph]: https://rook.io/
 [Longhorn]: https://longhorn.io/
