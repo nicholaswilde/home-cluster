@@ -6,6 +6,7 @@ ignore: |
   /server/ansible/roles/xanmanning.k3s/**
   **/flux-system/**
   **/discord-secret.yaml
+  **/secret.enc.yaml
 
 rules:
   line-length:
