@@ -3,6 +3,12 @@
 version: '3'
 
 tasks:
+  sources:
+    desc: Install flux sources
+    cmds:
+      - kubectl apply -f ./cluster/sources/
+    silent: true
+
   label:
     desc: Label the worker nodes
     cmds:
@@ -44,31 +50,24 @@ tasks:
       VERSION: "v0.9.6"
     silent: true
 
-  private:
-    desc: Import private secret
+  system-upgrade:
+    desc: Install system upgrade
     cmds:
-      - kubectl create ns flux-system
-      - |
-        pass {{ .SECRET }} | \
-          kubectl create secret generic sops-gpg \
-          --namespace=flux-system \
-          --from-file=sops.asc=/dev/stdin
-    vars:
-      SECRET: gpg/home-cluster-private
+      - kubectl apply -k ./cluster/system-upgrade/
+      - kubectl ns system-upgrade
     silent: true
 
-  flux:
-    desc: Create secret from pass and bootstrap flux
+  plans:
+    desc: Apply system-upgrade plans
     cmds:
-      - |
-        flux bootstrap github \
-          --owner=$GITHUB_USER \
-          --repository={{ .REPO }} \
-          --branch=main \
-          --path=./cluster \
-          --personal
-    vars:
-      REPO: home-cluster
+      - kubectl apply -f ./staging/system-upgrade/
+      - watch kubectl get all
+    silent: true
+
+  storage:
+    desc: Install managed-nfs-storage
+    cmds:
+      - kubectl apply -f ./cluster/managed-nfs-storage/
     silent: true
 
   taint:
