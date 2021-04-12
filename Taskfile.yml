@@ -11,7 +11,9 @@ vars:
 includes:
   ansible: ./.taskfiles/ansible.yaml
   blocky: ./.taskfiles/blocky.yaml
+  cert: ./.taskfiles/cert.yaml
   docs: ./.taskfiles/docs.yaml
+  flux: ./.taskfiles/flux.yaml
   gpg: ./.taskfiles/gpg.yaml
   hr: ./.taskfiles/hr.yaml
   k3s: ./.taskfiles/k3s.yaml
