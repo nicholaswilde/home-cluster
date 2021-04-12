@@ -1,0 +1,18 @@
+---
+version: '3'
+
+tasks:
+  generate:
+    desc: Generate passwordless self-signed certificate
+    cmds:
+      - |
+        openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+        -subj "/C=US/ST=CA/L=Mission Viejo/O=Home/CN={{ .URL }}" \
+        -keyout {{ .URL }}.key  -out {{ .URL }}.cert
+    deps:
+      - _check-url
+
+  _check-url:
+    cmds:
+      - test ! -z "{{ .URL }}" || (echo "URL is not set"; exit 1;)
+    silent: true
