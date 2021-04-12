@@ -6,4 +6,3 @@ resources:
   - system-upgrade
   - external-dns
   - cert-manager
-  - system-upgrade
