@@ -1,0 +1,38 @@
+---
+version: '3'
+
+tasks:
+  private:
+    desc: Import private secret
+    cmds:
+      - kubectl create ns flux-system
+      - |
+        pass {{ .SECRET }} | \
+          kubectl create secret generic sops-gpg \
+          --namespace=flux-system \
+          --from-file=sops.asc=/dev/stdin
+    vars:
+      SECRET: gpg/home-cluster-private
+    silent: true
+
+  install:
+    desc: Create base flux installation
+    cmds:
+      - task: private
+      - flux install
+    silent: true
+
+  bootstrap:
+    desc: Create secret from pass and bootstrap flux
+    cmds:
+      - task: private
+      - |
+        flux bootstrap github \
+          --owner=$GITHUB_USER \
+          --repository={{ .REPO }} \
+          --branch=main \
+          --path=./cluster/base \
+          --personal
+    vars:
+      REPO: home-cluster
+    silent: true
