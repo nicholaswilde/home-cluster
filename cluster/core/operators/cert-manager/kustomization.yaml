@@ -5,4 +5,3 @@ namespace: cert-manager
 resources:
   - secret.enc.yaml
   - certificate.yaml
-  - helm-release.yaml
