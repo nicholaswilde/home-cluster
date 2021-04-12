@@ -7,6 +7,7 @@ ignore: |
   **/flux-system/**
   **/discord-secret.yaml
   **/secret.enc.yaml
+  **/cert-manager.crds.yaml
 
 rules:
   line-length:
