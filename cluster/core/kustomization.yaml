@@ -5,3 +5,4 @@ resources:
   - crds
   - sources
   - namespaces
+  - operators
