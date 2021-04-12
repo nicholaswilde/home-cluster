@@ -13,90 +13,92 @@ vars:
 tasks:
   edit:
     desc: Edit vars
+    silent: true
     cmds:
       # yamllint disable-line rule:line-length
       - $EDITOR {{ .ANSIBLE_INVENTORY_DIR }}/{{ .ANSIBLE_INVENTORY }}/group_vars/all.yaml
-    silent: true
 
   reinstall:
     desc: Reinstall K3s
+    silent: true
     cmds:
       - task: nuke
       - task: install
 
   ping:
     desc: Ping all the k3s nodes
+    silent: true
     cmds:
       - >-
         ansible "{{.ANSIBLE_GROUPS}}"
         -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
         --one-line -m ping
-    silent: true
 
   list:
     desc: List all the k3s nodes
+    silent: true
     dir: "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}"
     cmds:
       - ansible "{{.ANSIBLE_GROUPS}}" -i "./hosts.yaml" --list-hosts
-    silent: true
 
   upgrade:
     desc: Upgrade all the k3s node's operating system
+    silent: true
     cmds:
       - >-
         ansible-playbook
         -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
         "{{.ANSIBLE_PLAYBOOK_DIR}}/upgrade.yaml"
         -l {{ .ANSIBLE_GROUPS }}
-    silent: true
 
   reboot:
     desc: Reboot all the k3s nodes
+    silent: true
     cmds:
       - >-
         ansible "{{.ANSIBLE_GROUPS}}"
         -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
         -b -m reboot
-    silent: true
 
   requirements:
     desc: Download all ansible requirements
-    cmds:
-      - "ansible-galaxy install -r {{.ANSIBLE_DIR}}/requirements.yaml"
     silent: true
+    cmds:
+      - "ansible-galaxy install -r {{.ANSIBLE_DIR}}/requirements.yaml --force"
 
   prepare:
     desc: Prepare the cluster for K3s installation
+    slient: true
     cmds:
       - >-
         ansible-playbook
         -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
         "{{.ANSIBLE_PLAYBOOK_DIR}}/prepare.yaml"
-    slient: true
+        -l {{ .ANSIBLE_GROUPS }}
 
   install:
     desc: Install K3s
+    slient: true
     cmds:
       - >-
         ansible-playbook
         -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
         "{{.ANSIBLE_PLAYBOOK_DIR}}/install.yaml"
-    slient: true
 
   nuke:
     desc: Nuke K3s
+    slient: true
     cmds:
       - >-
         ansible-playbook
         -i "{{.ANSIBLE_INVENTORY_DIR}}/{{ .ANSIBLE_INVENTORY }}/hosts.yaml"
         "{{.ANSIBLE_PLAYBOOK_DIR}}/nuke.yaml"
-    slient: true
 
   vars:
     desc: Print vars
+    silent: true
     cmds:
       - printf "%s  %s\n" "ANSIBLE_PLAYBOOK_DIR" "{{ .ANSIBLE_PLAYBOOK_DIR }}"
       - printf "%s %s\n" "ANSIBLE_INVENTORY_DIR" "{{ .ANSIBLE_INVENTORY_DIR }}"
       - printf "%s        %s\n" "ANSIBLE_GROUPS" "{{ .ANSIBLE_GROUPS }}"
       - printf "%s     %s\n" "ANSIBLE_INVENTORY" "{{ .ANSIBLE_INVENTORY }}"
-    silent: true
