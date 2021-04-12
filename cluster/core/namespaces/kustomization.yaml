@@ -6,3 +6,4 @@ resources:
   - managed-nfs-storage.yaml
   - media.yaml
   - networking.yaml
+  - system-upgrade
