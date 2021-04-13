@@ -4,4 +4,3 @@ kind: Kustomization
 namespace: cert-manager
 resources:
   - secret.enc.yaml
-  - certificate.yaml
