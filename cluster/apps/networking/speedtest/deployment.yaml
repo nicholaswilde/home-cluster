@@ -21,7 +21,6 @@ metadata:
   name: speedtest
 spec:
   type: ClusterIP
-  externalTrafficPolicy: Local
   ports:
     - protocol: TCP
       port: 8080
