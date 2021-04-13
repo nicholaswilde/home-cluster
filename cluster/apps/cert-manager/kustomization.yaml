@@ -4,3 +4,4 @@ kind: Kustomization
 namespace: cert-manager
 resources:
   - helm-release.yaml
+  - certificate.yaml

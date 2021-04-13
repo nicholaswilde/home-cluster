@@ -1,0 +1,33 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+  namespace: cert-manager
+spec:
+  acme:
+    email: ncwilde43@gmail.com
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+      - dns01:
+          cloudflare:
+            email: ncwilde43@gmail.com
+            apiTokenSecretRef:
+              name: cloudflare-api-token-secret
+              key: api-token
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: nicholaswilde
+  namespace: cert-manager
+spec:
+  secretName: nicholaswilde
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: nicholaswilde.io
+  dnsNames:
+    - nicholaswilde.io
