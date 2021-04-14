@@ -3,12 +3,6 @@
 version: '3'
 
 tasks:
-  sources:
-    desc: Install flux sources
-    cmds:
-      - kubectl apply -f ./cluster/sources/
-    silent: true
-
   label:
     desc: Label the worker nodes
     cmds:
@@ -67,7 +61,7 @@ tasks:
   storage:
     desc: Install managed-nfs-storage
     cmds:
-      - kubectl apply -f ./cluster/managed-nfs-storage/
+      - kubectl apply -k ./cluster/core/operators/managed-nfs-storage/
     silent: true
 
   taint:

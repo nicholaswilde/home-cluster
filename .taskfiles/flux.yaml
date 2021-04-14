@@ -2,6 +2,24 @@
 version: '3'
 
 tasks:
+  crds:
+    desc: Install flux crds
+    cmds:
+      - kubectl apply -k ./cluster/core/crds/cert-manager/
+    silent: true
+
+  sources:
+    desc: Install flux sources
+    cmds:
+      - kubectl apply -k ./cluster/core/sources/
+    silent: true
+
+  namespaces:
+    desc: Create namespaces
+    cmds:
+      - kubectl apply -k ./cluster/core/namespaces/
+    silent: true
+
   private:
     desc: Import private secret
     cmds:
@@ -20,12 +38,13 @@ tasks:
     cmds:
       - task: private
       - flux install
+      - kubectl apply -k cluster/base/flux-system/
     silent: true
 
   bootstrap:
     desc: Create secret from pass and bootstrap flux
     cmds:
-      - task: private
+      #- task: private
       - |
         flux bootstrap github \
           --owner=$GITHUB_USER \
