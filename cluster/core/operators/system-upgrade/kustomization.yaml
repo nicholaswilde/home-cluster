@@ -4,5 +4,8 @@ kind: Kustomization
 namespace: system-upgrade
 metadata:
   name: core-system-upgrade
+spec:
+  dependsOn:
+    - name: core-managed-nfs-storage
 resources:
   - deployment.yaml
