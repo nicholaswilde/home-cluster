@@ -13,4 +13,4 @@ spec:
         name: jetstack-charts
       version: v1.3.0
   interval: 1m0s
-  targetNamespace: networking
+  targetNamespace: cert-manager
