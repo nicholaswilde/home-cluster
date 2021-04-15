@@ -32,6 +32,8 @@ nav:
 
 extra:
   social:
+    - icon: fontawesome/solid/home
+      link: https://nicholaswilde.io/
     - icon: fontawesome/brands/github
       link: https://github.com/nicholaswilde
     - icon: fontawesome/brands/twitter
