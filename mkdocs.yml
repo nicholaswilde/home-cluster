@@ -38,6 +38,10 @@ extra:
       link: https://twitter.com/nicholascwilde
     - icon: fontawesome/brands/instagram
       link: https://www.instagram.com/wildewoodworking/
+    - icon: fontawesome/brands/linkedin-in
+      link: https://www.linkedin.com/in/nicholaswilde
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/nicholas.wilde/
     - icon: fontawesome/solid/key
       link: https://github.com/nicholaswilde.gpg
 
