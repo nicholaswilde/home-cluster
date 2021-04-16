@@ -53,8 +53,8 @@ Actions.
 [RPiOS]: https://downloads.raspberrypi.org/raspios_arm64/images/
 [CM3+]: https://www.raspberrypi.org/products/compute-module-3-plus/
 [RPi4]: https://www.raspberrypi.org/products/raspberry-pi-4-model-b/
-[case]: https://www.amazon.com/gp/product/B0728DX73X/
-[fans]: https://www.amazon.com/gp/product/B00NEMGCIA/
+[case]: https://www.amazon.com/dp/B0728DX73X/
+[fans]: https://www.amazon.com/dp/B00NEMGCIA/
 [Traefik]: https://traefik.io/
 [external-dns]: https://github.com/kubernetes-sigs/external-dns
 [nfs]: https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
