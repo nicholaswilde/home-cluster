@@ -5,3 +5,4 @@ namespace: networking
 resources:
   - external-dns
   - speedtest
+  - blocky
