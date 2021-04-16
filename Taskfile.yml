@@ -5,6 +5,9 @@ vars:
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
   CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+  APPS_DIR: "{{.CLUSTER_DIR}}/apps"
+  BASE_DIR: "{{.CLUSTER_DIR}}/base"
+  CORE_DIR: "{{.CLUSTER_DIR}}/core"
   ANSIBLE_DIR: "{{.PROJECT_DIR}}/server/ansible"
   TZ: "America/Los_Angeles"
 
