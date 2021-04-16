@@ -5,13 +5,13 @@ tasks:
   update-version:
     desc: Update the K3S version badge in the docs.
     cmds:
-      - sed -i "s/k3s-.*-orange/k3s-{{ .VERSION }}-orange/g" ./README.md
+      - sed -i "s/k3s-.*-orange/k3s-{{ .VERSION }}-orange/g" ./docs/README.md
       - sed -i "s/k3s-.*-orange/k3s-{{ .VERSION }}-orange/g" ./docs/index.md
     vars:
       VERSION:
         sh: |
-          kubectl get node turing-main | \
-          grep turing-main | \
+          kubectl get node main-01 | \
+          grep main-01 | \
           awk '{ print $5 }' | \
           sed 's/+.*//'
     silent: true
