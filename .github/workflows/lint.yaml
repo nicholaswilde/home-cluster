@@ -20,15 +20,15 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           config_file: "./.github/.yamllint-config.yaml"
-  markdown-link-check:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
-      - uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with:
-          folder-path: 'docs'
+#  markdown-link-check:
+#    runs-on: ubuntu-20.04
+#    steps:
+#      - uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 1
+#      - uses: gaurav-nelson/github-action-markdown-link-check@v1
+#        with:
+#          folder-path: 'docs'
   markdownlint-cli:
     runs-on: ubuntu-20.04
     steps:
