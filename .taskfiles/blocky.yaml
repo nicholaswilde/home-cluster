@@ -31,7 +31,7 @@ tasks:
 
   wl:
     desc: Add to the whitelist.txt
-    dir: "{{.PROJECT_DIR}}/cluster/kube-system/blocky"
+    dir: "{{.APPS_DIR}}/networking/blocky"
     cmds:
       - echo {{ .URL }} | tee -a whitelist.txt
     deps:
@@ -40,7 +40,7 @@ tasks:
 
   bl:
     desc: Add to the blacklist.txt
-    dir: "{{.PROJECT_DIR}}/cluster/kube-system/blocky"
+    dir: "{{.APPS_DIR}}/networking/blocky"
     cmds:
       - echo {{ .URL }} | tee -a blacklist.txt
     deps:
