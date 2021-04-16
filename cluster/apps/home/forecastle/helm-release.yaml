@@ -21,10 +21,6 @@ spec:
     forecastle:
       config:
         title: "Nick's Apps"
-        namespaceSelector:
-          matchNames:
-            - media
-            - home
       ingress:
         enabled: true
         annotations:
