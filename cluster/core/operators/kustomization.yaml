@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - external-dns
   - cert-manager
+  - system-upgrade

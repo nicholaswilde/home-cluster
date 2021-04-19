@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - managed-nfs-storage
   - system-upgrade
+  - ingress-nginx
