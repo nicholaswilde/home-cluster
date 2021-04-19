@@ -5,7 +5,7 @@ timezone: "America/Los_Angeles"
 
 k3s_server:
   node-ip: "{{ ansible_host }}"
-k3s_release_version: "v1.18"
+k3s_release_version: "v1.19"
 
 # Install using hard links rather than symbolic links.
 # ...if you are using the system-upgrade-controller you will need to use hard
