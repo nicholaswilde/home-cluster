@@ -8,3 +8,5 @@ resources:
   - media.yaml
   - networking.yaml
   - system-upgrade.yaml
+  - metallb-system.yaml
+  - ingress-nginx.yaml
