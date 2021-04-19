@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: registry
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.twun.io
+      chart: docker-registry
+      sourceRef:
+        kind: HelmRepository
+        name: twuni-charts
+      version: 1.10.1
+  interval: 10m
+  targetNamespace: media
+  values:
+    ingress:
+      enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: nicholaswilde.io
+        kubernetes.io/ingress.class: nginx
+      hosts:
+        - r.nicholaswilde.io
+      path: /
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    storage: filesystem
+    persistence:
+      accessMode: 'ReadWriteOnce'
+      enabled: true
+      storageClass: 'managed-nfs-storage'
