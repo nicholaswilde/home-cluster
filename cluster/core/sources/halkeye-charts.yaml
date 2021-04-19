@@ -7,3 +7,4 @@ metadata:
 spec:
   interval: 10m
   url: https://halkeye.github.io/helm-charts/
+  timeout: 3m
