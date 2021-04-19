@@ -7,3 +7,4 @@ metadata:
 spec:
   interval: 10m
   url: https://kubernetes.github.io/dashboard/
+  timeout: 3m
