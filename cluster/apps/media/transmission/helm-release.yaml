@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: transmission
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts
+      chart: transmission
+      version: 3.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+  interval: 30s
+  targetNamespace: media
+  values:
+    env:
+      TRANSMISSION_WEB_HOME: /kettu/
+      TZ: America/Los_Angeles
+    ingress:
+      enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: nicholaswilde.io
+        kubernetes.io/ingress.class: nginx
+      hosts:
+        - host: t.nicholaswilde.io
+          paths:
+            - path: /
+              pathType: Prefix
+    persistence:
+      config:
+        accessMode: ReadWriteOnce
+        emptyDir: false
+        enabled: true
+        mountPath: /config
+        size: 1Gi
+        skipuninstall: false
+        storageClass: managed-nfs-storage
+      downloads:
+        accessMode: ReadWriteOnce
+        emptyDir: false
+        enabled: true
+        mountPath: /downloads
+        size: 1Gi
+        skipuninstall: false
+        storageClass: managed-nfs-storage
+      watch:
+        accessMode: ReadWriteOnce
+        emptyDir: false
+        enabled: true
+        mountPath: /watch
+        size: 1Gi
+        skipuninstall: false
+        storageClass: managed-nfs-storage
