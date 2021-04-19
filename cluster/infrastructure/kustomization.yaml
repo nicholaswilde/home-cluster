@@ -6,3 +6,4 @@ resources:
   - metallb
   - system-upgrade
   - ingress-nginx
+  - external-dns
