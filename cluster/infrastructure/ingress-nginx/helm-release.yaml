@@ -13,3 +13,8 @@ spec:
         name: ingress-nginx-charts
   interval: 10m
   targetNamespace: ingress-nginx
+  values:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 90Mi
