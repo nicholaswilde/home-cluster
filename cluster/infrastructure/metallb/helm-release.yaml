@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: flux-system
+spec:
+  targetNamespace: metallb-system
+  chart:
+    spec:
+      chart: ./charts/metallb
+      sourceRef:
+        kind: GitRepository
+        name: metallb-charts
+  interval: 10m
+  values:
+    existingConfigMap: "config"
+    speaker:
+      secretName: memberlist

@@ -16,3 +16,4 @@ resources:
   - nfs-subdir-external-provisioner-charts.yaml
   - rancher-charts.yaml
   - nextcloud-charts.yaml
+  - metallb-charts.yaml

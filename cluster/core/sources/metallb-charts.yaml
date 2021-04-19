@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: metallb-charts
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: https://github.com/metallb/metallb/
+  timeout: 3m
+  ref:
+    branch: main
+  ignore: |
+    # exclude all
+    /*
+    # include charts directory
+    !/charts/
