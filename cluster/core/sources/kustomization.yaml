@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - bitnami-charts.yaml
+  - dashboard-charts.yaml
+  - ingress-nginx-charts.yaml
+  - k8s-at-home-charts.yaml
+  - mojo2600-charts.yaml
+  - nicholaswilde-charts.yaml
+  - twuni-charts.yaml
+  - coredns-charts.yaml
+  - halkeye-charts.yaml
+  - jetstack-charts.yaml
+  - kubernetes-sigs-descheduler-charts.yaml
+  - nfs-subdir-external-provisioner-charts.yaml
+  - rancher-charts.yaml
+  - nextcloud-charts.yaml
