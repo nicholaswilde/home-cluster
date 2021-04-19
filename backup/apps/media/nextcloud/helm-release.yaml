@@ -1,0 +1,30 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      # renovate: registryUrl=https://nextcloud.github.io/helm/
+      chart: nextcloud
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud-charts
+  interval: 1m0s
+  targetNamespace: media
+  values:
+    nextcloud:
+      host: n.nicholaswilde.io
+    ingress:
+      enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: nicholaswilde.io
+    persistence:
+      enabled: true
+      storageClass: "managed-nfs-storage"
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false

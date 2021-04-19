@@ -1,0 +1,28 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: reg
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: reg
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+  interval: 1m0s
+  targetNamespace: media
+  values:
+    env:
+      EXTRA_ARGS: "server --registry -k r.nicholaswilde.io"
+      TZ: America/Los_Angeles
+    ingress:
+      enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: nicholaswilde.io
+      hosts:
+        - host: reg.nicholaswilde.io
+          paths:
+            - path: /
+              pathType: Prefix
