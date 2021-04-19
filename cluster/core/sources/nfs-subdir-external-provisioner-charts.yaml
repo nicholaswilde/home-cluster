@@ -8,4 +8,3 @@ spec:
   interval: 10m
   url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
   timeout: 3m
-  
