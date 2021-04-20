@@ -1,0 +1,30 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: reg
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: reg
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+  interval: 10m
+  targetNamespace: media
+  values:
+    env:
+      EXTRA_ARGS: "server -k --registry r.nicholaswilde.io"
+      TZ: America/Los_Angeles
+    ingress:
+      enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: nicholaswilde.io
+        kubernetes.io/ingress.class: nginx
+      hosts:
+        - host: reg.nicholaswilde.io
+          paths:
+            - path: /
+              pathType: Prefix
