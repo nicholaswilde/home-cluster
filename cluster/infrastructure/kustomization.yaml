@@ -4,6 +4,5 @@ kind: Kustomization
 resources:
   - managed-nfs-storage
   - metallb
-  - system-upgrade
   - ingress-nginx
   - external-dns

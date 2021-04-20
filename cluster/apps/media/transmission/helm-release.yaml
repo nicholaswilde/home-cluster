@@ -17,7 +17,7 @@ spec:
   targetNamespace: media
   values:
     env:
-      TRANSMISSION_WEB_HOME: /kettu/
+      # TRANSMISSION_WEB_HOME: /kettu/
       TZ: America/Los_Angeles
     ingress:
       enabled: true
