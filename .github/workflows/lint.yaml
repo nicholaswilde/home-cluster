@@ -36,7 +36,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: Markdownlint-cli
-        uses: nosborn/github-action-markdown-cli@v2.0.0
+        uses: nosborn/github-action-markdown-cli@v3.0.1
         with:
           files: docs
           config_file: './.github/.markdownlint.yaml'
