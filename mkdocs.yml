@@ -44,12 +44,15 @@ extra:
       link: https://www.linkedin.com/in/nicholaswilde
     - icon: fontawesome/brands/facebook
       link: https://www.facebook.com/nicholas.wilde/
+    - icon: fontawesome/brands/keybase
+      link: https://keybase.io/nicholaswilde
     - icon: fontawesome/solid/key
       link: https://github.com/nicholaswilde.gpg
 
 theme:
   name: material
-
+  icon:
+    repo: fontawesome/brands/github
   # Default values, taken from mkdocs_theme.yml
   language: en
   font:
