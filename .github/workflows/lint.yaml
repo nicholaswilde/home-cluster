@@ -13,7 +13,7 @@ jobs:
     name: Yamllint
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.4.2
         with:
           fetch-depth: 1
       - name: Lint YAML
@@ -32,7 +32,7 @@ jobs:
   markdownlint-cli:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.4.2
         with:
           fetch-depth: 1
       - name: Markdownlint-cli
@@ -43,7 +43,7 @@ jobs:
   shellcheck:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.4.2
         with:
           fetch-depth: 1
       - name: Lint Hack Scripts
