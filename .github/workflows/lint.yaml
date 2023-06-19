@@ -17,7 +17,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: Lint YAML
-        uses: ibiqlik/action-yamllint@v3.0.4
+        uses: ibiqlik/action-yamllint@v3.1.1
         with:
           config_file: "./.github/.yamllint-config.yaml"
 #  markdown-link-check:
