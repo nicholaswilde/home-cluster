@@ -47,7 +47,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: Lint Hack Scripts
-        uses: reviewdog/action-shellcheck@v1.9
+        uses: reviewdog/action-shellcheck@v1.20
         with:
           path: "./hack"
           level: "error"
